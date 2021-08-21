@@ -1,0 +1,41 @@
+name: Build and Deploy API Docker Image
+
+on:
+  push:
+    branches: [ bootstrap ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: echo "🍏 This job's status is ${{ job.status }}."
+    - run: npm ci
+    - run: nx test api
+    - run: nx build api
+    - run: git_hash=$(git rev-parse --short "$GITHUB_SHA")
+    - run: image_name=mbat-api:$git_hash
+    - name: Build the Docker image
+    - run: docker build . --file api.Dockerfile --tag $image_name
+    - name: CapRover App Deploy
+      uses: floms/action-caprover@v1
+      with:
+        host: '${{ secrets.CAPROVER_DOMAIN }}'
+        password: '${{ secrets.CAPROVER_PASSWORD }}'
+        app: '${{ secrets.CAPROVER_APP_NAME }}'
+        image: $image_name
