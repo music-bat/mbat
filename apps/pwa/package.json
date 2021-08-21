@@ -1,0 +1,6 @@
+{
+  "name": "pwa",
+  "browser": {
+    "crypto": false
+  }
+}
