@@ -3,7 +3,7 @@ name: Build and Deploy API Docker Image
 on:
   push:
     branches: [ bootstrap ]
-
+  workflow_dispatch:
 jobs:
 
   build:
@@ -31,7 +31,7 @@ jobs:
     - run: git_hash=$(git rev-parse --short "$GITHUB_SHA")
     - run: image_name=mbat-api:$git_hash
     - name: Build the Docker image
-    - run: docker build . --file api.Dockerfile --tag $image_name
+      run: docker build . --file api.Dockerfile --tag $image_name
     - name: CapRover App Deploy
       uses: floms/action-caprover@v1
       with:
