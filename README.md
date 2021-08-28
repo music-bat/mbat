@@ -26,7 +26,8 @@
  [![Maintainability](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/maintainability)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/maintainability)
  [![Test Coverage](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/test_coverage)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/test_coverage)
  ![Contributors](https://img.shields.io/github/contributors/music-bat/mbat?color=dark-green) ![Issues](https://img.shields.io/github/issues/music-bat/mbat) ![License](https://img.shields.io/github/license/music-bat/mbat) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-          <!-- ALL-CONTRIBUTORS-BADGE:END -->                                                                                                                                                                                                                                                                                              [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->                                                                                                                                                                                                                                                                                              [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <a href="https://www.patreon.com/perzeuss" title="Become a patreon"> 
   <img alt="Become a patreon" src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="200">
 </a>
@@ -114,7 +115,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/perzeuss"><img src="https://avatars.githubusercontent.com/u/11357019?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pascal M</b></sub></a><br /><a href="#projectManagement-perzeuss" title="Project Management">📆</a> <a href="#business-perzeuss" title="Business development">💼</a> <a href="https://github.com/music-bat/mbat/commits?author=perzeuss" title="Code">💻</a> <a href="https://github.com/music-bat/mbat/commits?author=perzeuss" title="Documentation">📖</a> <a href="https://www.figma.com/file/xy1C4MhmthZ0n295UkTZPH/mBat?node-id=8%3A3017" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/perzeuss"><img src="https://avatars.githubusercontent.com/u/11357019?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pascal M</b></sub></a><br /><a href="#projectManagement-perzeuss" title="Project Management">📆</a> <a href="#business-perzeuss" title="Business development">💼</a> <a href="https://github.com/music-bat/mbat/commits?author=perzeuss" title="Code">💻</a> <a href="https://github.com/music-bat/mbat/commits?author=perzeuss" title="Documentation">📖</a> <a href="#design-perzeuss" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/mavolin"><img src="https://avatars.githubusercontent.com/u/48887425?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maximilian von Lindern</b></sub></a><br /><a href="#ideas-mavolin" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
