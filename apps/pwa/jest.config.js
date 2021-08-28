@@ -17,10 +17,11 @@ module.exports = {
   ],
   transform: { '^.+\\.(ts|js|html)$': 'jest-preset-angular' },
   collectCoverage: true,
+  coverageReporters: ['lcov'],
   collectCoverageFrom: [
-    "**/*.ts",
-    "!**/*.spec.ts",
-    "!**/node_modules/**",
-    "!**/vendor/**"
-  ]
+    '**/*.ts',
+    '!**/*.spec.ts',
+    '!**/node_modules/**',
+    '!**/vendor/**',
+  ],
 };

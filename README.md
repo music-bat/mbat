@@ -22,11 +22,14 @@
 </p>
 
  [![Build and Deploy API](https://github.com/music-bat/mbat/actions/workflows/api-build-deploy.yml/badge.svg)](https://github.com/music-bat/mbat/actions/workflows/api-build-deploy.yml) 
- [![Build and Deploy PWA](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml/badge.svg)](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml) ![Contributors](https://img.shields.io/github/contributors/music-bat/mbat?color=dark-green) ![Issues](https://img.shields.io/github/issues/music-bat/mbat) ![License](https://img.shields.io/github/license/music-bat/mbat) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+ [![Build and Deploy PWA](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml/badge.svg)](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml) 
+ [![Maintainability](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/maintainability)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/maintainability)
+ [![Test Coverage](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/test_coverage)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/test_coverage)
+ ![Contributors](https://img.shields.io/github/contributors/music-bat/mbat?color=dark-green) ![Issues](https://img.shields.io/github/issues/music-bat/mbat) ![License](https://img.shields.io/github/license/music-bat/mbat) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
           <!-- ALL-CONTRIBUTORS-BADGE:END -->                                                                                                                                                                                                                                                                                              [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-[![Maintainability](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/maintainability)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/test_coverage)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/test_coverage)
-
+<a href="https://www.patreon.com/perzeuss" title="Become a patreon"> 
+  <img alt="Become a patreon" src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="200">
+</a>
 ## Table Of Contents
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
@@ -58,14 +61,20 @@ Distributed under the MIT License. See [LICENSE](https://github.com/music-bat/mb
 ## Project Setup
 
 ### Requirements
-* For the development of the PWA you'll need Node.js >=10.13.0.
-* For the development of the api you'll additionally need Docker. 
+You'll need Node.js >=16.0.0 and Docker >= 19.03.0 running on your local machine.
 
 ### Get Started
 * Checkout the repository e.g. via `git clone https://github.com/music-bat/mbat.git`
 * Install dependencies via `npm i`. ⚠ Don't use yarn or pnpm!
 * Copy the [.env-example file](.env-example) to [.env-example file](.env) and configure your environment
-* Bootstrap Databases via `docker-compose up`. This will start MongoDB, Redis and Neo4j databases.
+* Generate a docker-compose.yml via `npm run generate:docker-compose`
+* Start Docker containers for local development via `docker compose up`. This will start MongoDB, Redis and Neo4j databases, as well as a dashboards to manage parse and neo4j data.
+
+#### Neo4j Dashboard
+The Neo4j Dashboard will be available under http://localhost:7474/browser/. Use it to verify database changes you make when working with our neo4j api service.
+
+#### Parse Dashboard
+The Parse Dashboard will be available under http://localhost:4040. Use it to manage data in our mongodb. Never connect directly to the mongodb instance to change data!
 
 ### Development server
 
@@ -74,17 +83,17 @@ Distributed under the MIT License. See [LICENSE](https://github.com/music-bat/mb
 
 ## Build
 
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Run `ng test app-name` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
 ## Running end-to-end tests
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `ng e2e app-name` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 

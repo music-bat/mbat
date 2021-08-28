@@ -18,7 +18,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npx nx test api
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPORTER_ID }}
+      with:
+        coverageCommand: npx nx test api & cp ${{github.workspace}}/coverage/apps/pwa/lcov.info ${{github.workspace}}/coverage/lcov.info
+        coverageLocations: |
+          ${{github.workspace}}/**/*.lcov:lcov
+        debug: true
+        prefix: /home/runner/work/mbat/mbat/coverage/apps/api
   test-pwa:
     runs-on: ubuntu-latest
     strategy:
@@ -32,4 +41,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npx nx test pwa
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPORTER_ID }}
+      with:
+        coverageCommand: npx nx test pwa && cp ${{github.workspace}}/coverage/apps/pwa/lcov.info ${{github.workspace}}/coverage/lcov.info
+        coverageLocations: |
+          ${{github.workspace}}/**/*.lcov:lcov
+        debug: true

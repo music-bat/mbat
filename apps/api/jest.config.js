@@ -11,10 +11,11 @@ module.exports = {
   coverageDirectory: '../../coverage/apps/api',
   testEnvironment: 'node',
   collectCoverage: true,
+  coverageReporters: ['lcov'],
   collectCoverageFrom: [
-    "**/*.{ts}",
-    "!**/*.spec.{ts}",
-    "!**/node_modules/**",
-    "!**/vendor/**"
-  ]
+    '**/*.{ts}',
+    '!**/*.spec.{ts}',
+    '!**/node_modules/**',
+    '!**/vendor/**',
+  ],
 };

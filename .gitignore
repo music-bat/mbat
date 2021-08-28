@@ -5,6 +5,16 @@
 /tmp
 /out-tsc
 
+# docker-compose becase we generate this file cia tools/generators/docker-compose.ts
+docker-compose.yml
+
+# docker container data
+.neo4j/data
+.neo4j/logs
+.mailserver/data
+.mailserver/state
+.mailserver/logs
+
 # dependencies
 /node_modules
 
