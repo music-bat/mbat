@@ -25,12 +25,16 @@
  [![Build and Deploy PWA](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml/badge.svg)](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml) 
  [![Maintainability](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/maintainability)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/maintainability)
  [![Test Coverage](https://api.codeclimate.com/v1/badges/33abbeceae58814529e0/test_coverage)](https://codeclimate.com/repos/6122c74e91a22e0c9200000e/test_coverage)
- ![Contributors](https://img.shields.io/github/contributors/music-bat/mbat?color=dark-green) ![Issues](https://img.shields.io/github/issues/music-bat/mbat) ![License](https://img.shields.io/github/license/music-bat/mbat) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+ ![Contributors](https://img.shields.io/github/contributors/music-bat/mbat?color=dark-green) ![Issues](https://img.shields.io/github/issues/music-bat/mbat) ![License](https://img.shields.io/github/license/music-bat/mbat) 
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->                                                                                                                                                                                                                                                                                              [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 <a href="https://www.patreon.com/perzeuss" title="Become a patreon"> 
   <img alt="Become a patreon" src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="200">
 </a>
+
 ## Table Of Contents
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
