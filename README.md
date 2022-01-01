@@ -66,7 +66,9 @@ Distributed under the MIT License. See [LICENSE](https://github.com/music-bat/mb
 ## Project Setup
 
 ### Requirements
-You'll need Node.js >=16.0.0 and Docker >= 19.03.0 running on your local machine.
+This project contains the source code for backend (e.g. /apps/api) and frontend (e.g. /apps/pwa). Your local setup must meet the following requirements to get the whole ecosystem (api, apps, databases) running on a local machine.
+
+Node.js >=16.0.0 is required to run the backend and frontend code. Docker >= 19.03.0 is required to host local database instances.
 
 ### Get Started
 * Checkout the repository e.g. via `git clone https://github.com/music-bat/mbat.git`
