@@ -119,13 +119,14 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<!--- cSpell:disable -->
 <table>
   <tr>
     <td align="center"><a href="https://github.com/perzeuss"><img src="https://avatars.githubusercontent.com/u/11357019?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pascal M</b></sub></a><br /><a href="#projectManagement-perzeuss" title="Project Management">📆</a> <a href="#business-perzeuss" title="Business development">💼</a> <a href="https://github.com/music-bat/mbat/commits?author=perzeuss" title="Code">💻</a> <a href="https://github.com/music-bat/mbat/commits?author=perzeuss" title="Documentation">📖</a> <a href="#design-perzeuss" title="Design">🎨</a> <a href="#infra-perzeuss" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/mavolin"><img src="https://avatars.githubusercontent.com/u/48887425?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Maximilian von Lindern</b></sub></a><br /><a href="#ideas-mavolin" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
-
+<!--- cSpell:enable -->
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
