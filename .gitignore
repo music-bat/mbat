@@ -14,7 +14,7 @@ docker-compose.yml
 .mailserver/data
 .mailserver/state
 .mailserver/logs
-
+.parse/logs
 # dependencies
 /node_modules
 
