@@ -26,7 +26,7 @@ const env = {
 
 export const parseSeverConf = {
   databaseURI: env.databaseURI, // Connection string for your MongoDB database
-  cloud: process.env.CLOUD_CODE_PATH || './dist/parse/cloud/main.js',
+  cloud: process.env.CLOUD_CODE_PATH || './dist/apps/api/parse/cloud/index.js',
   appId: env.appId,
   masterKey: env.masterKey,
   fileKey: env.fileKey,
