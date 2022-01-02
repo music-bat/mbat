@@ -11,6 +11,7 @@
   "ignorePaths": [
     "node_modules/**",
     "mail-cli.sh",
+    "docker-compose.yml",
     "dist",
     "LICENSE",
     "CODE_OF_CONDUCT.md"
