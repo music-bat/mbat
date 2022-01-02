@@ -71,11 +71,8 @@ This project contains the source code for backend (e.g. /apps/api) and frontend 
 Node.js >=16.0.0 is required to run the backend and frontend code. Docker >= 19.03.0 is required to host local database instances.
 
 ### Get Started
-* Checkout the repository e.g. via `git clone https://github.com/music-bat/mbat.git`
-* Install dependencies via `npm i`. ⚠ Don't use yarn or pnpm!
-* Copy the [.env-example file](.env-example) to [.env-example file](.env) and configure your environment
-* Generate a docker-compose.yml via `npm run generate:docker-compose`
-* Start Docker containers for local development via `docker compose up`. This will start MongoDB, Redis and Neo4j databases, as well as a dashboards to manage parse and neo4j data.
+Read our [Getting Started Guide](docs/GETTING_STARTED.md) to get everything up and running.
+If you follow all Getting Started steps, you'll be able to explore the local app, the database or start contributing to this awesome project!
 
 #### Neo4j Dashboard
 The Neo4j Dashboard will be available under http://localhost:7474/browser/. Use it to verify database changes you make when working with our neo4j api service.
