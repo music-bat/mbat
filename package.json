@@ -60,7 +60,7 @@
     "express": "^4.15.2",
     "neo4j-driver": "^4.3.3",
     "parse": "^3.3.0",
-    "parse-server": "^4.10.0",
+    "parse-server": "^4.10.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.3",
     "simple-parse-smtp-adapter": "^1.0.9",
