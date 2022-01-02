@@ -1,4 +1,4 @@
 | Environment Variable | Is Required | Notes |
 |----------------------|-------------|-------|
 | DATABASE_URI         | **yes**     |       |
-|                      | no          |       |
+| APP_ID               | **yes**     |       |

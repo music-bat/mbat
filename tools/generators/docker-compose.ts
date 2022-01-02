@@ -31,7 +31,7 @@ generate({
         MONGO_INITDB_ROOT_USERNAME: 'root',
         MONGO_INITDB_ROOT_PASSWORD: (() => {
           const databasePassword = generatePassword('DATABASE_PASSWORD');
-          defineEnvironmentVariable('DATABASE_URI',`mongodb://root:${databasePassword}@localhost:27017/dev`)
+          defineEnvironmentVariable('DATABASE_URI',`mongodb://root:${databasePassword}@localhost:27017/dev?authSource=admin`)
           return databasePassword;
         })(),
       },
@@ -44,10 +44,14 @@ generate({
       container_name: 'mbat-parse-dashboard',
       ports: ['4040:4040'],
       environment: {
-        PARSE_DASHBOARD_SERVER_URL: process.env.SERVER_URL,
-        PARSE_DASHBOARD_MASTER_KEY: process.env.MASTER_KEY,
-        PARSE_DASHBOARD_APP_ID: process.env.APP_ID,
+        PARSE_DASHBOARD_SERVER_URL: defineEnvironmentVariable('SERVER_URL', 'http://localhost:3333'),
+        PARSE_DASHBOARD_MASTER_KEY: generatePassword('MASTER_KEY'),
+        PARSE_DASHBOARD_APP_ID: defineEnvironmentVariable('APP_ID', 'mBatDevelopment'),
         PARSE_DASHBOARD_APP_NAME: 'mBat',
+        PARSE_DASHBOARD_COOKIE_SESSION_SECRET: generatePassword('PARSE_DASHBOARD_COOKIE_SESSION_SECRET'),
+        PARSE_DASHBOARD_USER_ID: defineEnvironmentVariable('PARSE_DASHBOARD_USER_ID', 'admin'),
+        PARSE_DASHBOARD_USER_PASSWORD: generatePassword('PARSE_DASHBOARD_USER_PASSWORD'),
+        PARSE_DASHBOARD_ALLOW_INSECURE_HTTP: defineEnvironmentVariable('PARSE_DASHBOARD_ALLOW_INSECURE_HTTP', '1')
       },
     },
 
@@ -84,7 +88,13 @@ generate({
       image: 'redis:6.2-alpine',
       container_name: 'mbat-parse-redis',
       restart: 'unless-stopped',
-      command: `redis-server --requirepass ${generatePassword()}`,
+      command: `redis-server --requirepass ${(()=>{
+
+
+        const redisPassword = generatePassword();
+        defineEnvironmentVariable('REDIS_URL', `redis://:${redisPassword}@localhost:6379`)
+        return redisPassword;
+      })()}`,
       ports: ['6379:6379'],
       volumes: [
         'redis_data:/var/lib/redis',
@@ -139,6 +149,9 @@ function generate(obj: any): void {
     path.join(__dirname, '../../', 'docker-compose.yml'),
     yamlString
   );
+
+  // Define additional environment variables which are not required in the docker compose at this time
+  generatePassword('FILE_KEY');
 }
 
 /*
@@ -168,4 +181,6 @@ function defineEnvironmentVariable(name: string, value: string){
   );
 
   writeFileSync(path.join(__dirname, '../../', '.env'), envFileString);
+
+  return value;
 }
