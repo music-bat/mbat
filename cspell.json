@@ -1,0 +1,64 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "caseSensitive": false,
+  "overrides": [
+    {
+      "filename": "docs/**/*.md",
+      "caseSensitive": true
+    }
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "mail-cli.sh",
+    "dist",
+    "LICENSE",
+    "CODE_OF_CONDUCT.md"
+  ],
+  "dictionaries": [
+    "en_US",
+    "typescript",
+    "domain",
+    "repo",
+    "config"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "domain",
+      "path": "./domain.dict"
+    },
+    {
+      "name": "repo",
+      "path": "./repo.dict"
+    },
+    {
+      "name": "config",
+      "path": "./config.dict"
+    }
+  ],
+  "patterns": [
+    {
+      "name": "comment-single-line",
+      "pattern": "/#.*/g"
+    },
+    {
+      "name": "comment-multi-line",
+      "pattern": "/(?:\\/\\*[\\s\\S]*?\\*\\/)/g"
+    },
+    {
+      "name": "passwords",
+      "pattern": "/PASSWORD=\\s?(?:\"|').*(?:\"|')|PASSWORD:\\s?.*\\s|--requirepass\\s.*\\s/g"
+    },
+    {
+      "name": "comments",
+      "pattern": [
+        "comment-single-line",
+        "comment-multi-line"
+      ]
+    }
+  ],
+  "ignoreRegExpList": [
+    "comments",
+    "passwords"
+  ]
+}
