@@ -29,7 +29,11 @@ generate({
       restart: 'unless-stopped',
       environment: {
         MONGO_INITDB_ROOT_USERNAME: 'root',
-        MONGO_INITDB_ROOT_PASSWORD: generatePassword('DATABASE_PASSWORD'),
+        MONGO_INITDB_ROOT_PASSWORD: (() => {
+          const databasePassword = generatePassword('DATABASE_PASSWORD');
+          defineEnvironmentVariable('DATABASE_URI',`mongodb://root:${databasePassword}@localhost:27017/dev`)
+          return databasePassword;
+        })(),
       },
       ports: ['27017:27017'],
       volumes: ['mongodb_data:/data/mongo-db'],
@@ -149,8 +153,14 @@ function generatePassword(environmentName?: string): string {
 
   if (!environmentName) return password;
 
+  defineEnvironmentVariable(environmentName, password);
+
+  return password;
+}
+
+function defineEnvironmentVariable(name: string, value: string){
   const dotenvData = config().parsed || {};
-  dotenvData[environmentName] = password;
+  dotenvData[name] = value;
 
   let envFileString = '';
   Object.keys(dotenvData).forEach(
@@ -158,6 +168,4 @@ function generatePassword(environmentName?: string): string {
   );
 
   writeFileSync(path.join(__dirname, '../../', '.env'), envFileString);
-
-  return password;
 }

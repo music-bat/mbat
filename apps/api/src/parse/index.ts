@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 config();
 
 const env = {
-  databaseURI: process.env.DATABASE_URL,
+  databaseURI: process.env.DATABASE_URI,
   appId: process.env.APP_ID,
   masterKey: process.env.MASTER_KEY,
   fileKey: process.env.FILE_KEY,
