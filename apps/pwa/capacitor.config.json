@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "pwa",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "../../dist/apps/pwa",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

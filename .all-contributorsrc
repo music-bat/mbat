@@ -1,0 +1,38 @@
+{
+  "projectName": "mbat",
+  "projectOwner": "music-bat",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "perzeuss",
+      "name": "Pascal M",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11357019?v=4",
+      "profile": "https://github.com/perzeuss",
+      "contributions": [
+        "projectManagement",
+        "business",
+        "code",
+        "doc",
+        "design",
+        "infra"
+      ]
+    },
+    {
+      "login": "mavolin",
+      "name": "Maximilian von Lindern",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48887425?v=4",
+      "profile": "https://github.com/mavolin",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

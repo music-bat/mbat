@@ -1,0 +1,52 @@
+name: Run unit tests with jest
+on:
+  push:
+    branches:
+      - "*"
+  workflow_dispatch:
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPORTER_ID }}
+      with:
+        coverageCommand: npx nx test api & cp ${{github.workspace}}/coverage/apps/pwa/lcov.info ${{github.workspace}}/coverage/lcov.info
+        coverageLocations: |
+          ${{github.workspace}}/**/*.lcov:lcov
+        debug: true
+        prefix: /home/runner/work/mbat/mbat/coverage/apps/api
+  test-pwa:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_REPORTER_ID }}
+      with:
+        coverageCommand: npx nx test pwa && cp ${{github.workspace}}/coverage/apps/pwa/lcov.info ${{github.workspace}}/coverage/lcov.info
+        coverageLocations: |
+          ${{github.workspace}}/**/*.lcov:lcov
+        debug: true
