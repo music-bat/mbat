@@ -21,5 +21,5 @@ There are required environment variables you need to define before you can conti
 Run `docker-compose up` to start all docker containers. This will take a while the first time. If it does not work, you may have reached the docker pull rate limit. To fix that, simply login into a docker account or buy a docker license to increase the limit if you're already logged in.
 
 Verify that all containers are up and running. `docker ps | grep mbat | wc -l` should return 5.
-After that, you can start the project via `npm run start`. This will serve the backend (parse-server) and the frontend (pwa) and starts a watch process to transpile parse cloud.
+After that, you can build the project via `npm run build` and start via `npm run start`. This will serve the backend (parse-server) and the frontend (pwa) and starts a watch process to transpile parse cloud code which will be executed via parse server.
 Every change you make to the source code under apps/ will trigger a hot reload, you should immediately see your changes.
