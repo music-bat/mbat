@@ -39,6 +39,8 @@
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
+* [Project Setup](#project-setup)
+* [Contributors](#contributors-)
 
 ## Roadmap
 
