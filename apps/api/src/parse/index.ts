@@ -1,4 +1,5 @@
 import { config } from 'dotenv';
+import * as path from "path";
 
 config();
 
@@ -14,6 +15,8 @@ const env = {
   emailVerifyTokenValidityDuration:
     Number(process.env.EMAIL_VERIFY_VALIDITY_DURATION_SECONDS) || 2 * 60 * 60, // in seconds
   emailConf: {
+    service: 'SMTP',
+    extension: 'handlebars',
     fromAddress: process.env.SMTP_FROM,
     user: process.env.SMTP_AUTH_USER,
     password: process.env.SMTP_AUTH_PASSWORD,
@@ -71,12 +74,12 @@ export const parseSeverConf = {
             //This template is used only for reset password email
             resetPassword: {
               //Path to your template
-              template: __dirname + '/views/email/reset-password',
+              template: path.join(__dirname , '/parse/views/email/reset-password'),
               //Subject for this email
               subject: 'Reset your password',
             },
             verifyEmail: {
-              template: __dirname + '/views/email/verify-email',
+              template: path.join(__dirname , '/parse/views/email/verify-email'),
               subject: 'Verify Email',
             },
           },

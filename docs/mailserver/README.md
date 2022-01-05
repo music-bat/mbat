@@ -31,3 +31,12 @@ Use the following script to delete an email accounts:
 Use the following script to update the password for an email account:
 `./mail-cli.sh email update <EMAIL ADDRESS> [<NEW PASSWORD>]`
 If no password is provided, the cli prompts to enter one.
+
+## Sending E-Mails
+
+### Within Parse
+For sending emails we use a parse smtp adapter. Emails use handlebars templates which, in our case, are just html files with parameters. 
+You can use three parameters in these templates: The `appName`, the parse `user` object and a `link`.
+
+### Outside Parse
+For sending emails outside parse, you can use [nodemailer](https://www.npmjs.com/package/nodemailer) in combination with [email-templates](https://github.com/forwardemail/email-templates).
