@@ -23,3 +23,4 @@ These environment variables take effect in the parse server (api).
 | SMTP_AUTH_SSL                          | **yes**     | Flag. Set to true if SMTP server should use a SSL configuration                 |
 | SMTP_AUTH_PORT                         | **yes**     | SMTP Server Port                                                                |
 | CLOUD_CODE_PATH                        | no          | Path to the parse cloud code build entrypoint                                   |
+| VERIFY_USER_EMAILS                     | no          | Flag. Set to true to send mails for email verification                          |
