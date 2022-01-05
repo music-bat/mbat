@@ -44,7 +44,7 @@ generate({
       container_name: 'mbat-parse-dashboard',
       ports: ['4040:4040'],
       environment: {
-        PARSE_DASHBOARD_SERVER_URL: defineEnvironmentVariable('SERVER_URL', 'http://localhost:3333'),
+        PARSE_DASHBOARD_SERVER_URL: defineEnvironmentVariable('SERVER_URL',`http://localhost:${defineEnvironmentVariable('PORT', '3333')}/`),
         PARSE_DASHBOARD_MASTER_KEY: generatePassword('MASTER_KEY'),
         PARSE_DASHBOARD_APP_ID: defineEnvironmentVariable('APP_ID', 'mBatDevelopment'),
         PARSE_DASHBOARD_APP_NAME: 'mBat',
