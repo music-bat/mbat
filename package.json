@@ -54,9 +54,9 @@
     "@ionic-native/status-bar": "^5.30.0",
     "@ionic/angular": "^5.5.2",
     "@ionic/angular-server": "^5.6.14",
-    "@nestjs/common": "^7.0.0",
-    "@nestjs/core": "^7.0.0",
-    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/platform-express": "^8.0.0",
     "@nguniversal/express-engine": "^12.1.0",
     "@nrwl/angular": "13.4.3",
     "express": "^4.15.2",
@@ -65,7 +65,7 @@
     "parse": "^3.3.0",
     "parse-server": "^4.10.4",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "~6.6.3",
+    "rxjs": "^7.0.0",
     "simple-parse-smtp-adapter": "github:music-bat/simple-parse-smtp-adapter",
     "spotify-web-api-node": "^5.0.2",
     "tslib": "^2.0.0",
@@ -82,8 +82,8 @@
     "@capacitor/android": "^2.4.5",
     "@capacitor/cli": "^2.4.5",
     "@capacitor/ios": "^2.4.5",
-    "@nestjs/schematics": "^7.0.0",
-    "@nestjs/testing": "^7.0.0",
+    "@nestjs/schematics": "^8.0.0",
+    "@nestjs/testing": "^8.0.0",
     "@nguniversal/builders": "^12.1.0",
     "@nrwl/cli": "13.4.3",
     "@nrwl/cypress": "13.4.3",
@@ -121,4 +121,3 @@
     "webpack-dev-server": "^4.7.2"
   }
 }
-
