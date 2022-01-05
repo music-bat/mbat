@@ -3,11 +3,11 @@ We use the [Docker Mailserver](https://docker-mailserver.github.io/docker-mailse
 In this file is documented how to get started with the mailserver.
 
 ## CLI
-A cli to interact with the mailserver can be found under [mail-cli.sh](mail-cli.sh).
+A cli to interact with the mailserver can be found under [mail-cli.sh](/mail-cli.sh).
 The documentation for the whole cli can be found [here](https://docker-mailserver.github.io/docker-mailserver/edge/config/setup.sh/).
 
 ## E-Mail Accounts
-All email accounts can be found in [.mailserver/config/postfix-accounts.cf](.mailserver/config/postfix-accounts.cf)
+All email accounts can be found in [.mailserver/config/postfix-accounts.cf](/.mailserver/config/postfix-accounts.cf)
 
 ### Development Mail Account
 For development, a mail account has been set up:
