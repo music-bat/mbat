@@ -14,6 +14,7 @@ const env = {
     String(process.env.VERIFY_USER_EMAILS).toLowerCase() == 'true',
   emailVerifyTokenValidityDuration:
     Number(process.env.EMAIL_VERIFY_VALIDITY_DURATION_SECONDS) || 2 * 60 * 60, // in seconds
+  preventLoginWithUnverifiedEmail:String(process.env.PREVENT_LOGIN_WITHOUT_VERIFIED_EMAIL).toLowerCase() == 'true',
   emailConf: {
     service: 'SMTP',
     extension: 'handlebars',
@@ -24,6 +25,7 @@ const env = {
     isSSL: String(process.env.SMTP_AUTH_SSL).toLowerCase() === 'true',
     port: process.env.SMTP_AUTH_PORT,
     name: process.env.SMTP_DOMAIN_NAME,
+    appName: process.env.EMAIL_APP_NAME
   },
 };
 
@@ -50,14 +52,14 @@ export const parseSeverConf = {
 
   // set preventLoginWithUnverifiedEmail to false to allow user to login without verifying their email
   // set preventLoginWithUnverifiedEmail to true to prevent user from login if their email is not verified
-  preventLoginWithUnverifiedEmail: false, // defaults to false
+  preventLoginWithUnverifiedEmail: env.preventLoginWithUnverifiedEmail || false, // defaults to false
 
   // The public URL of your app.
   // This will appear in the link that is used to verify email addresses and reset passwords.
   // Set the mount path as it is in serverURL
   publicServerURL: env.publicServerURL,
   // Your apps name. This will appear in the subject and body of the emails that are sent.
-  appName: 'mbat',
+  appName: env.emailConf.appName || 'mBat',
   // The email adapter
   emailAdapter: !env.emailConf
     ? undefined
@@ -109,7 +111,7 @@ export const parseSeverConf = {
     maxPasswordAge: 90, // optional setting in days for password expiry. Login fails if user does not reset the password within this period after signup/last reset.
     maxPasswordHistory: 5, // optional setting to prevent reuse of previous n passwords. Maximum value that can be specified is 20. Not specifying it or specifying 0 will not enforce history.
     //optional setting to set a validity duration for password reset links (in seconds)
-    resetTokenValidityDuration: 24 * 60 * 60, // expire after 24 hours
+    resetTokenValidityDuration: 24 * 60 * 60, // expire after 2 hours
   },
   liveQuery: {
     classNames: ['Group', 'GroupProfile', 'UserProfile'], // List of classes to support for query subscriptions
