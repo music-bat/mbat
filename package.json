@@ -11,7 +11,7 @@
     "start:pwa": "ng serve pwa",
     "start:api": "nx serve api",
     "start:cloud": "tsc -p apps/api/tsconfig.build.json -W",
-    "build": "nx build api & build:cloud & nx build pwa & nx server pwa",
+    "build": "nx build api & npm run build:cloud & nx build pwa & nx server pwa",
     "build:api": "nx build api",
     "build:cloud": "tsc -p apps/api/tsconfig.build.json",
     "test": "ng test",
