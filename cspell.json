@@ -10,7 +10,9 @@
   ],
   "ignorePaths": [
     "node_modules/**",
+    "apps/api/src/parse/views/**",
     "mail-cli.sh",
+    "docker-compose.yml",
     "dist",
     "LICENSE",
     "CODE_OF_CONDUCT.md"

@@ -39,6 +39,8 @@
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
+* [Project Setup](#project-setup)
+* [Contributors](#contributors-)
 
 ## Roadmap
 
@@ -61,21 +63,18 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/music-bat/mbat/blob/main/LICENSE.md) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/music-bat/mbat/blob/main/LICENSE) for more information.
 
 ## Project Setup
 
 ### Requirements
 This project contains the source code for backend (e.g. /apps/api) and frontend (e.g. /apps/pwa). Your local setup must meet the following requirements to get the whole ecosystem (api, apps, databases) running on a local machine.
 
-Node.js >=16.0.0 is required to run the backend and frontend code. Docker >= 19.03.0 is required to host local database instances.
+Node.js >=16.0.0 <= 17.0.0 is required for the javascript tooling and to build the backend and frontend code. Docker >= 19.03.0 is required to host local database instances.
 
 ### Get Started
-* Checkout the repository e.g. via `git clone https://github.com/music-bat/mbat.git`
-* Install dependencies via `npm i`. ⚠ Don't use yarn or pnpm!
-* Copy the [.env-example file](.env-example) to [.env-example file](.env) and configure your environment
-* Generate a docker-compose.yml via `npm run generate:docker-compose`
-* Start Docker containers for local development via `docker compose up`. This will start MongoDB, Redis and Neo4j databases, as well as a dashboards to manage parse and neo4j data.
+Read our [Getting Started Guide](docs/GETTING_STARTED.md) to get everything up and running.
+If you follow all getting started steps, you'll be able to explore the local running app, the database or start contributing to this awesome project!
 
 #### Neo4j Dashboard
 The Neo4j Dashboard will be available under http://localhost:7474/browser/. Use it to verify database changes you make when working with our neo4j api service.
@@ -86,31 +85,23 @@ The Parse Dashboard will be available under http://localhost:4040. Use it to man
 ### Development server
 
 * Run `nx serve-ssr pwa` to start the pwa dev server with ssr. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-* Run `npm run start:cloud` and `nx serve api` to start the api dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+* Run `npm run start:cloud` and `nx serve api` to start the api dev server.
 
-## Build
+### Build
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Running unit tests
 
-Run `ng test app-name` to execute the unit tests via [Jest](https://jestjs.io).
+Run `ng test pwa` to execute the unit tests via [Jest](https://jestjs.io) in our frontend.
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
-## Running end-to-end tests
+### Running end-to-end tests
 
-Run `ng e2e app-name` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `ng e2e pwa-e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io). This command will also run `ng serve pwa` before cypress tests are executed!
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
 
 ## Contributors ✨
 

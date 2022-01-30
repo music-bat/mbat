@@ -18,23 +18,9 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "parallel": 1
       }
-    }
-  },
-  "projects": {
-    "api": {
-      "tags": []
-    },
-    "api-interfaces": {
-      "tags": []
-    },
-    "pwa": {
-      "tags": []
-    },
-    "pwa-e2e": {
-      "tags": [],
-      "implicitDependencies": ["pwa"]
     }
   },
   "targetDependencies": {
@@ -44,5 +30,36 @@
         "projects": "dependencies"
       }
     ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm"
+  },
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
   }
 }

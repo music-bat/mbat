@@ -14,7 +14,7 @@ docker-compose.yml
 .mailserver/data
 .mailserver/state
 .mailserver/logs
-
+.parse/logs
 # dependencies
 /node_modules
 
@@ -35,6 +35,7 @@ docker-compose.yml
 !.vscode/extensions.json
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
