@@ -1,9 +1,10 @@
 import { config } from 'dotenv';
+import * as path from "path";
 
 config();
 
 const env = {
-  databaseURI: process.env.DATABASE_URL,
+  databaseURI: process.env.DATABASE_URI,
   appId: process.env.APP_ID,
   masterKey: process.env.MASTER_KEY,
   fileKey: process.env.FILE_KEY,
@@ -13,7 +14,10 @@ const env = {
     String(process.env.VERIFY_USER_EMAILS).toLowerCase() == 'true',
   emailVerifyTokenValidityDuration:
     Number(process.env.EMAIL_VERIFY_VALIDITY_DURATION_SECONDS) || 2 * 60 * 60, // in seconds
+  preventLoginWithUnverifiedEmail:String(process.env.PREVENT_LOGIN_WITHOUT_VERIFIED_EMAIL).toLowerCase() == 'true',
   emailConf: {
+    service: 'SMTP',
+    extension: 'handlebars',
     fromAddress: process.env.SMTP_FROM,
     user: process.env.SMTP_AUTH_USER,
     password: process.env.SMTP_AUTH_PASSWORD,
@@ -21,12 +25,13 @@ const env = {
     isSSL: String(process.env.SMTP_AUTH_SSL).toLowerCase() === 'true',
     port: process.env.SMTP_AUTH_PORT,
     name: process.env.SMTP_DOMAIN_NAME,
+    appName: process.env.EMAIL_APP_NAME
   },
 };
 
 export const parseSeverConf = {
   databaseURI: env.databaseURI, // Connection string for your MongoDB database
-  cloud: process.env.CLOUD_CODE_PATH || './dist/parse/cloud/main.js',
+  cloud: process.env.CLOUD_CODE_PATH || './dist/apps/api/parse/cloud/index.js',
   appId: env.appId,
   masterKey: env.masterKey,
   fileKey: env.fileKey,
@@ -47,14 +52,14 @@ export const parseSeverConf = {
 
   // set preventLoginWithUnverifiedEmail to false to allow user to login without verifying their email
   // set preventLoginWithUnverifiedEmail to true to prevent user from login if their email is not verified
-  preventLoginWithUnverifiedEmail: false, // defaults to false
+  preventLoginWithUnverifiedEmail: env.preventLoginWithUnverifiedEmail || false, // defaults to false
 
   // The public URL of your app.
   // This will appear in the link that is used to verify email addresses and reset passwords.
   // Set the mount path as it is in serverURL
   publicServerURL: env.publicServerURL,
   // Your apps name. This will appear in the subject and body of the emails that are sent.
-  appName: 'mbat',
+  appName: env.emailConf.appName || 'mBat',
   // The email adapter
   emailAdapter: !env.emailConf
     ? undefined
@@ -71,12 +76,12 @@ export const parseSeverConf = {
             //This template is used only for reset password email
             resetPassword: {
               //Path to your template
-              template: __dirname + '/views/email/reset-password',
+              template: path.join(__dirname , '/parse/views/email/reset-password'),
               //Subject for this email
               subject: 'Reset your password',
             },
             verifyEmail: {
-              template: __dirname + '/views/email/verify-email',
+              template: path.join(__dirname , '/parse/views/email/verify-email'),
               subject: 'Verify Email',
             },
           },
@@ -106,7 +111,7 @@ export const parseSeverConf = {
     maxPasswordAge: 90, // optional setting in days for password expiry. Login fails if user does not reset the password within this period after signup/last reset.
     maxPasswordHistory: 5, // optional setting to prevent reuse of previous n passwords. Maximum value that can be specified is 20. Not specifying it or specifying 0 will not enforce history.
     //optional setting to set a validity duration for password reset links (in seconds)
-    resetTokenValidityDuration: 24 * 60 * 60, // expire after 24 hours
+    resetTokenValidityDuration: 24 * 60 * 60, // expire after 2 hours
   },
   liveQuery: {
     classNames: ['Group', 'GroupProfile', 'UserProfile'], // List of classes to support for query subscriptions

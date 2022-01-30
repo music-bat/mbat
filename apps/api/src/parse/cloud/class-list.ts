@@ -3,8 +3,8 @@ export enum ClassList {
   _Session = '_Session',
   _User = '_User',
   Group = 'Group',
-  GroupProfile = 'Group',
-  UserProfile = 'PokerCard',
+  GroupProfile = 'GroupProfile',
+  UserProfile = 'UserProfile',
 }
 
 export const customParseClasses = Object.values(ClassList).filter(
