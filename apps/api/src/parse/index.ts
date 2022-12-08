@@ -8,6 +8,7 @@ const env = {
   appId: process.env.APP_ID,
   masterKey: process.env.MASTER_KEY,
   fileKey: process.env.FILE_KEY,
+  javascriptKey: process.env.JAVASCRIPT_KEY,
   serverURL: process.env.SERVER_URL,
   publicServerURL: process.env.PUBLIC_SERVER_URL,
   verifyUserEmails:
@@ -35,6 +36,7 @@ export const parseSeverConf = {
   appId: env.appId,
   masterKey: env.masterKey,
   fileKey: env.fileKey,
+  javascriptKey: env.javascriptKey,
   serverURL: env.serverURL,
   // Enable email verification
   verifyUserEmails: env.verifyUserEmails,

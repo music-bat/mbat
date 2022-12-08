@@ -26,6 +26,7 @@ These environment variables take effect in the parse server (api).
 | MASTER_KEY                                    | **yes**     | Secret required to perform backend logic as master user                                                                                         |
 | PARSE_SERVER_READ_ONLY_MASTER_KEY             | no          | Read-only key, which has the same capabilities as MasterKey without writes                                                                      |
 | FILE_KEY                                      | **yes**     | Api key required to access files from api                                                                                                       |
+| JAVASCRIPT_KEY                                | **yes**     | Api key required to access api from javascript app (PWA)                                                                                        |
 | PARSE_SERVER_REVOKE_SESSION_ON_PASSWORD_RESET | no          | Flag. When a user changes their password, either through the reset password email or while logged in, all sessions are revoked if this is true. |
 | PARSE_SERVER_SESSION_LENGTH                   | no          | Flag.  Session duration, in seconds, defaults to 1 year.                                                                                        |
 | PREVENT_LOGIN_WITHOUT_VERIFIED_EMAIL          | no          | Flag. Set to true to deny login for users without verified email.                                                                               |

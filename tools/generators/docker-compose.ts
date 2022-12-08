@@ -152,6 +152,7 @@ function generate(obj: any): void {
 
   // Define additional environment variables which are not required in the docker compose at this time
   generatePassword('FILE_KEY');
+  generatePassword('JAVASCRIPT_KEY');
   generatePassword('PARSE_SERVER_READ_ONLY_MASTER_KEY');
 }
 

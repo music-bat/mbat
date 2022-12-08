@@ -137,6 +137,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.dev.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": ""
@@ -149,6 +157,9 @@
           "configurations": {
             "production": {
               "browserTarget": "pwa:build:production"
+            },
+            "dev": {
+              "browserTarget": "pwa:build:dev"
             }
           }
         },
