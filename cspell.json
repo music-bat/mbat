@@ -36,6 +36,10 @@
     {
       "name": "config",
       "path": "./config.dict"
+    },
+    {
+      "name": "german",
+      "path": "./german.dict"
     }
   ],
   "patterns": [
