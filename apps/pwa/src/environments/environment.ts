@@ -7,6 +7,7 @@ export const environment = {
     liveQueryUrl: 'wss://api.mbat.io'
   },
   spotify: {
-    clientId: 'YOUR_SPOTIFY_CLIENT_ID_HERE'
+    clientId: 'YOUR_SPOTIFY_CLIENT_ID_HERE',
+    redirectUri: 'https://api.mbat.io/login'
   }
 };

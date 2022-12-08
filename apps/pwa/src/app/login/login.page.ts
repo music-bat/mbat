@@ -142,7 +142,7 @@ export class LoginPage {
       response_type: 'token',
       client_id: environment.spotify.clientId,
       scope: ['user-read-private'].join(' '),
-      redirect_uri: 'http://localhost:4200/login',
+      redirect_uri: environment.spotify.redirectUri,
       // TODO: generate and verify state
       state: 'test',
     }).toString();
