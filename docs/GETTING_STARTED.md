@@ -17,6 +17,9 @@ Besides that, a .env file has been created. You can configure everything in ther
 Visit [Environment Variables](docs/ENVIRONMENT_VARIABLES.md) to learn which environment variables you can define.
 There are required environment variables you need to define before you can continue with the next step.
 
+### Angular Environments for local development
+Copy [the default environment file](apps/pwa/src/environments/environment.ts) to `apps/pwa/src/environments/environment.dev.ts` and configure your local environments here.
+
 ### Step 3.2: Email Client
 We use an SMTP client within our api server which requires to have the following environment variables set:
 ```dotenv

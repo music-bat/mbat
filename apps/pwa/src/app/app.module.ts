@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule.withServerTransition({ appId: 'mbat' }), IonicModule.forRoot(), AppRoutingModule],
+    imports: [BrowserModule.withServerTransition({ appId: 'mbat' }), IonicModule.forRoot({mode: 'md'}), AppRoutingModule],
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent]
 })
