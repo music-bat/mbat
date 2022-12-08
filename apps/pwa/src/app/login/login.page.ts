@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: 'mbat-login',
@@ -139,9 +140,10 @@ export class LoginPage {
     );
     url.search = new URLSearchParams({
       response_type: 'token',
-      client_id: '2df9bb1945ef422d8b1d0859a7e02bb9',
+      client_id: environment.spotify.clientId,
       scope: ['user-read-private'].join(' '),
       redirect_uri: 'http://localhost:4200/login',
+      // TODO: generate and verify state
       state: 'test',
     }).toString();
 
