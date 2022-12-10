@@ -129,6 +129,9 @@ export class LoginPage {
         user.setUsername(this.#spotifyUser.display_name);
         return user.save();
       })
+      .then((user) => {
+        return user.pin();
+      })
       .then(() => this.navCtl.navigateRoot('/'))
       .catch(console.error);
   }
