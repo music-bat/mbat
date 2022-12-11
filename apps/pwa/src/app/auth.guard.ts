@@ -6,11 +6,18 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) { }
-  canActivate(
+  async canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
-    if(Parse.User.current()){
-      return true
+    state: RouterStateSnapshot): Promise<boolean> {
+    try {
+      if(Parse.User.current()){
+        return true
+      }
+    } catch (err){
+      if (err.code === 209) {
+        const invalidSession = await Parse.Session.current();
+        await invalidSession.destroy()
+      }
     }
 
     this.router.navigate(['account','login'], { queryParams: { returnUrl: state.url }});

@@ -1,0 +1,15 @@
+<ion-content>
+  <mbat-add-group-slider #slider>
+    <ng-container class="slide1">
+      <mbat-add-group-page-01 (slideNext)="next($event)"></mbat-add-group-page-01>
+    </ng-container>
+
+    <ng-container class="slide2">
+      <mbat-add-group-page-02 [mode]="mode" (slideNext)="next($event)"></mbat-add-group-page-02>
+    </ng-container>
+
+    <ng-container class="slide3">
+      <mbat-add-group-page-03 [mode]="mode" (createGroup)="createGroup($event)"></mbat-add-group-page-03>
+    </ng-container>
+  </mbat-add-group-slider>
+</ion-content>
