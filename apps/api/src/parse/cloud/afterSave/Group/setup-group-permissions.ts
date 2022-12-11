@@ -18,6 +18,7 @@ export async function setupGroupPermissions(request: AfterSaveRequest) {
   groupModeratorRole.relation('group').add(request.object);
   groupModeratorRole.set('type', 'moderator');
   groupModeratorRole.set('groupId', request.object.id);
+  groupModeratorRole.getUsers().add(user)
   await groupModeratorRole.save(undefined, { useMasterKey: true });
 
   groupACL.setRoleReadAccess(groupModeratorRole, true);
@@ -27,6 +28,7 @@ export async function setupGroupPermissions(request: AfterSaveRequest) {
   groupMemberRole.relation('group').add(request.object);
   groupMemberRole.set('type', 'member');
   groupMemberRole.set('groupId', request.object.id);
+  groupMemberRole.getUsers().add(user)
   await groupMemberRole.save(undefined, { useMasterKey: true });
 
   groupACL.setRoleReadAccess(groupModeratorRole, true);
