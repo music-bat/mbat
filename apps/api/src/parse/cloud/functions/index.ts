@@ -1,5 +1,3 @@
-// Parse.Cloud.define(
-//   'functionName',
-//   async function (req: Parse.Cloud.FunctionRequest<{ /* function props */ }>) {
-//   },
-// );
+import { deleteFile } from './delete-file';
+
+Parse.Cloud.define('deleteFile', deleteFile);
