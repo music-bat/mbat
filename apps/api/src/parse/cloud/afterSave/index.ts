@@ -2,7 +2,7 @@ import { Cloud } from 'parse';
 import './File/index';
 import { ClassList, customParseClasses } from '../class-list';
 import { setupGroupPermissions } from './Group/setup-group-permissions';
-import { addEveryoneRole } from './User/add-everyone-role';
+import { assignEveryoneRole } from './User/assign-everyone-role';
 
 customParseClasses.forEach((className) => {
   Parse.Cloud.afterSave(className, (request: AfterSaveRequest) => {
@@ -11,8 +11,7 @@ customParseClasses.forEach((className) => {
         setupGroupPermissions(request).catch((err) => console.error('[Parse Cloud] afterSave/Group/setupGroupPermissions', err));
         break;
       case ClassList._User:
-        console.log('addEveryoneRole')
-        addEveryoneRole(request).catch((err) => console.error('[Parse Cloud] afterSave/_User/addEveryoneRole', err));
+        assignEveryoneRole(request).catch((err) => console.error('[Parse Cloud] afterSave/_User/assignEveryoneRole', err));
         break;
       case ClassList.UserProfile:
         break;
