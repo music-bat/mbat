@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CompressService } from '../../compress.service';
 
@@ -124,10 +124,10 @@ export class AddGroupPage03Component {
   }>();
   @Input() mode: 'create' | 'join';
 
-  createGroupForm = new FormGroup({
-    image: new FormControl(undefined, [Validators.required]),
-    name: new FormControl(undefined, [Validators.required, Validators.min(3), Validators.maxLength(30)]),
-    description: new FormControl(undefined, [Validators.maxLength(100)]),
+  createGroupForm = new UntypedFormGroup({
+    image: new UntypedFormControl(undefined, [Validators.required]),
+    name: new UntypedFormControl(undefined, [Validators.required, Validators.min(3), Validators.maxLength(30)]),
+    description: new UntypedFormControl(undefined, [Validators.maxLength(100)]),
   });
 
   get imagePreview() {

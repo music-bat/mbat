@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'pwa',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
@@ -21,10 +22,5 @@ module.exports = {
   transformIgnorePatterns: ['node_modules/(?!.*.mjs$)'],
   collectCoverage: true,
   coverageReporters: ['lcov'],
-  collectCoverageFrom: [
-    '**/*.ts',
-    '!**/*.spec.ts',
-    '!**/node_modules/**',
-    '!**/vendor/**',
-  ],
+  collectCoverageFrom: ['**/*.ts', '!**/*.spec.ts', '!**/node_modules/**', '!**/vendor/**'],
 };

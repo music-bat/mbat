@@ -7,8 +7,10 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "builder": "@nrwl/webpack:webpack",
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
@@ -19,7 +21,9 @@
                 "input": "apps/api/src/parse/views/email",
                 "output": "./parse/views/email"
               }
-            ]
+            ],
+            "target": "node",
+            "compiler": "tsc"
           },
           "configurations": {
             "production": {
@@ -36,7 +40,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "builder": "@nrwl/node:node",
           "options": {
             "buildTarget": "api:build"
           }
@@ -44,15 +48,21 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/api"
+          ],
           "options": {
-            "jestConfig": "apps/api/jest.config.js",
+            "jestConfig": "apps/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -67,9 +77,13 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/api-interfaces/**/*.ts"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         }
       },
       "tags": []
@@ -177,13 +191,17 @@
               "apps/pwa/src/**/*.html"
             ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/pwa"],
+          "outputs": [
+            "{workspaceRoot}/coverage/apps/pwa"
+          ],
           "options": {
-            "jestConfig": "apps/pwa/jest.config.js",
+            "jestConfig": "apps/pwa/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -311,7 +329,9 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": ["/"]
+            "routes": [
+              "/"
+            ]
           },
           "configurations": {
             "production": {
@@ -349,13 +369,19 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/pwa-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/pwa-e2e/**/*.{js,ts}"
+            ]
           },
-          "outputs": ["{options.outputFile}"]
+          "outputs": [
+            "{options.outputFile}"
+          ]
         }
       },
       "tags": [],
-      "implicitDependencies": ["pwa"]
+      "implicitDependencies": [
+        "pwa"
+      ]
     }
   }
 }
