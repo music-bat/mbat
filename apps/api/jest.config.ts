@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'api',
   preset: '../../jest.preset.js',
   globals: {
@@ -12,10 +13,5 @@ module.exports = {
   testEnvironment: 'node',
   collectCoverage: true,
   coverageReporters: ['lcov'],
-  collectCoverageFrom: [
-    '**/*.{ts}',
-    '!**/*.spec.{ts}',
-    '!**/node_modules/**',
-    '!**/vendor/**',
-  ],
+  collectCoverageFrom: ['**/*.{ts}', '!**/*.spec.{ts}', '!**/node_modules/**', '!**/vendor/**'],
 };

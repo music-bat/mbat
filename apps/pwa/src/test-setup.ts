@@ -1,3 +1,14 @@
+
+// Mock Parse SDK
+Object.defineProperty(global, 'Parse', { value: {
+  User: {
+    current: jest.fn().mockReturnValue({
+      getUsername: jest.fn()
+    })
+  },
+  Query: jest.fn(),
+  Object: jest.fn(),
+}, writable: true });
 import 'jest-preset-angular/setup-jest';
 import { getTestBed } from '@angular/core/testing';
 import {
@@ -12,14 +23,3 @@ getTestBed().initTestEnvironment(
   { teardown: { destroyAfterEach: false } }
 );
  
-
-// Mock Parse SDK
-Object.defineProperty(global, 'Parse', { value: {
-  User: {
-    current: jest.fn().mockReturnValue({
-      getUsername: jest.fn()
-    })
-  },
-  Query: jest.fn(),
-  Object: jest.fn(),
-}, writable: true });
