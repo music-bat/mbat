@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     (Parse as unknown & { serverURL: string }).serverURL = environment.parse.serverUrl;
     (Parse as unknown & { liveQueryServerURL: string }).liveQueryServerURL = environment.parse.liveQueryUrl;
     Parse.initialize(environment.parse.appId, environment.parse.javascriptKey);
+    Parse.enableLocalDatastore()
     platformBrowserDynamic()
       .bootstrapModule(AppModule)
       .catch(err => console.error(err));

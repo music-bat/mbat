@@ -2,8 +2,5 @@
   "name": "pwa",
   "browser": {
     "crypto": false
-  },
-  "dependencies": {
-    "@ngneat/until-destroy": "^9.2.2"
   }
 }

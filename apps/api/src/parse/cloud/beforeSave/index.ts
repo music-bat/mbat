@@ -1,5 +1,6 @@
 import { ClassList, customParseClasses } from '../class-list';
 import { Cloud } from 'parse';
+import './File/index'
 
 customParseClasses.forEach((className) => {
   Parse.Cloud.beforeSave(className, (request: BeforeSaveRequest) => {
@@ -7,8 +8,6 @@ customParseClasses.forEach((className) => {
 
     switch (className) {
       case ClassList.Group:
-        break;
-      case ClassList.GroupProfile:
         break;
       case ClassList.UserProfile:
         break;

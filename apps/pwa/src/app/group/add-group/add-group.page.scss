@@ -1,0 +1,75 @@
+mbat-add-group-page-01, mbat-add-group-page-02, mbat-add-group-page-03 {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+form {
+  ion-item {
+    margin: 24px 0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --ion-color-shade: rgba(255, 255, 255, 0.1);
+  }
+
+  ion-input {
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-weight: 400;
+  }
+
+  ion-textarea {
+    font-weight: 400;
+  }
+}
+
+.content-head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    padding: 24px;
+    max-height: 40vh !important;
+  }
+}
+
+.content-body {
+  width: 100%;
+  overflow-y: scroll;
+  padding: 24px;
+}
+
+.content-footer {
+  width: 100%;
+  padding: 24px 12px 36px 12px;
+}
+
+ion-segment {
+  margin: 12px 0;
+}
+
+.group-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.group-image {
+  width: calc(20vh * 1.2);
+  height: 20vh;
+  border-radius: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.swiper-slide[data-swiper-slide-index="2"] {
+  flex-direction: column;
+}
+.swiper {
+  height: 100vh;
+}

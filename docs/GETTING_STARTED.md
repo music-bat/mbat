@@ -18,7 +18,13 @@ Visit [Environment Variables](docs/ENVIRONMENT_VARIABLES.md) to learn which envi
 There are required environment variables you need to define before you can continue with the next step.
 
 ### Angular Environments for local development
-Copy [the default environment file](apps/pwa/src/environments/environment.ts) to `apps/pwa/src/environments/environment.dev.ts` and configure your local environments here.
+Copy [the default environment file](apps/pwa/src/environments/environment.ts) to `apps/pwa/src/environments/environment.dev.ts` and configure your local environment variables here.
+
+## Setup Spotify
+In order to login locally, it's required to create a spotify app for development.
+Visit the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications) and create an app.
+Configure `http://localhost:4200/account/login` as redirect URI, also add this to `apps/pwa/src/environments/environment.dev.ts`.
+After you've configured this, it should be possible to log in to the local pwa with your spotify account.
 
 ### Step 3.2: Email Client
 We use an SMTP client within our api server which requires to have the following environment variables set:
@@ -39,3 +45,7 @@ Run `docker-compose up` to start all docker containers. This will take a while t
 Verify that all containers are up and running. `docker ps | grep mbat | wc -l` should return 5.
 After that, you can build the project via `npm run build` and start via `npm run start`. This will serve the backend (parse-server) and the frontend (pwa) and starts a watch process to transpile parse cloud code which will be executed via parse server.
 Every change you make to the source code under apps/ will trigger a hot reload, you should immediately see your changes.
+
+
+## Any issues during the setup? 
+If you have any questions, we're happy to help - get in touch with us via our Discord server. An up to date invitation to our Discord Server can be found in the footer/bottom of our [website](https://music-bat.com).

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: 'mbat-login',
@@ -99,7 +99,7 @@ export class LoginPage {
     } else {
       route.fragment
         .pipe(untilDestroyed(this))
-        .subscribe((fragment) =>
+        .subscribe((fragment: string) =>
           this.logIn(new URLSearchParams(fragment).get('access_token'))
         );
     }
@@ -128,6 +128,9 @@ export class LoginPage {
       .then((user) => {
         user.setUsername(this.#spotifyUser.display_name);
         return user.save();
+      })
+      .then((user) => {
+        return user.pin();
       })
       .then(() => this.navCtl.navigateRoot('/'))
       .catch(console.error);

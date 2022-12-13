@@ -2,7 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoginPage } from './login.page';
+import { LoginPage } from './login/login.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { RouterModule } from "@angular/router";
 
@@ -18,8 +18,13 @@ import { RouterModule } from "@angular/router";
         component: LoginPage,
         pathMatch: 'full',
       },
+      {
+        path: 'login',
+        component: LoginPage,
+        pathMatch: 'full',
+      },
     ])
   ],
   declarations: [LoginPage],
 })
-export class LoginModule {}
+export class AccountModule {}

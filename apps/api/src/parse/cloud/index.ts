@@ -1,4 +1,5 @@
 import './beforeSave';
+import './beforeDelete';
 import './afterSave';
 import './afterDelete';
 import './functions';
