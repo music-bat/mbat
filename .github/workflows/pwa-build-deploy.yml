@@ -33,8 +33,8 @@ jobs:
           if_key_exists: fail
       - run: npm ci --legacy-peer-deps
       - run: npx nx test pwa
-      - run: npx nx build pwa
-      - run: npx nx server pwa
+      - run: npx nx build pwa -c production
+      - run: npx nx server pwa -c production
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
