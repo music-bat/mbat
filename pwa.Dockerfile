@@ -1,8 +1,8 @@
 FROM node:16-alpine as release
 
-ADD /dist /home/node/dist/
-ADD package*.json /home/node/
-ADD node_modules/ /home/node/node_modules/
+COPY /dist /home/node/dist/
+COPY package*.json /home/node/
+COPY node_modules/ /home/node/node_modules/
 
 WORKDIR /home/node/
 
