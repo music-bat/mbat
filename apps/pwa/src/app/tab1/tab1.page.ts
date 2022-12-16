@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import * as Parse from 'parse';
 
 @Component({
   selector: 'mbat-tab1',
