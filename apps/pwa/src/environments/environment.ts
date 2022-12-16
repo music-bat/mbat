@@ -1,13 +1,11 @@
+/*
+* Dear Developer,
+* the variables here should all be configurable via environment variables.
+* Please define new variables here: environments.base.ts
+* */
+import { environmentsBase } from "./environments.base";
+
 export const environment = {
   production: false,
-  parse: {
-    appId: 'mbat',
-    serverUrl: 'https://api.mbat.io',
-    javascriptKey: 'YOUR_KEY_HERE',
-    liveQueryUrl: 'wss://api.mbat.io'
-  },
-  spotify: {
-    clientId: 'YOUR_SPOTIFY_CLIENT_ID_HERE',
-    redirectUri: 'https://api.mbat.io/login'
-  }
+  ...environmentsBase
 };

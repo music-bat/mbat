@@ -57,6 +57,7 @@
     "@nguniversal/express-engine": "15.0.0",
     "@nrwl/angular": "15.3.3",
     "express": "^4.15.2",
+    "glob": "^8.0.3",
     "handlebars": "^4.7.7",
     "neo4j-driver": "^4.3.3",
     "parse": "^3.5.1",

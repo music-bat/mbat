@@ -1,12 +1,30 @@
 # Environment Variables
 Here are defined which environment variables the project uses. Use `parse-server --help` to get a lost of all native Parse Server environment variables. 
 
-## Parse Server
-These environment variables take effect in the parse server (api).
+## Angular App (pwa)
+These environment variables take effect in the angular application when running in docker.
+For local development, configure these variables in the environments file directly: `apps/pwa/src/environments/environment.dev.ts`.
+
+### General
+| Environment Variable       | Is Required | Notes                                                |
+|----------------------------|-------------|------------------------------------------------------|
+| PARSE_APP_ID               | **yes**     | Parse app id                                         |
+| PARSE_SERVER_URL           | **yes**     | Url of the parse backend (api)                       |
+| PARSE_JAVASCRIPT_API_KEY   | **yes**     | Javascript Key configured in the parse backend (api) |
+
+### Spotify
+| Environment Variable       | Is Required | Notes                                                                                                              |
+|----------------------------|-------------|--------------------------------------------------------------------------------------------------------------------|
+| SPOTIFY_CLIENT_ID          | **yes**     | A spotify client ID. Get your own client id [here](https://developer.spotify.com/dashboard/applications)           |
+| SPOTIFY_REDIRECT_URI       | **yes**     | A redirect uri pointing to the path /account/login of your frontend, e.g. https://app.music-bat.com/account/login. |
+
+
+## Parse Server (api)
+These environment variables take effect in the parse server.
 ### General
 | Environment Variable       | Is Required | Notes                                                                         |
 |----------------------------|-------------|-------------------------------------------------------------------------------|
-| APP_ID                     | **yes**     | parse app id                                                                  |
+| APP_ID                     | **yes**     | Parse app id                                                                  |
 | SERVER_URL                 | **yes**     | Internal backend api url for services inside the cloud network                |
 | PUBLIC_SERVER_URL          | **yes**     | Public backend api url for the frontend                                       |
 | PARSE_SERVER_LOGS_FOLDER   | no          | Path where parse server logs should be stored                                 |
