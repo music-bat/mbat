@@ -15,7 +15,8 @@
     "docker-compose.yml",
     "dist",
     "LICENSE",
-    "CODE_OF_CONDUCT.md"
+    "CODE_OF_CONDUCT.md",
+    ".github"
   ],
   "dictionaries": [
     "en_US",
