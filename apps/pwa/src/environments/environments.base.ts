@@ -1,7 +1,7 @@
 /*
 * Dear Developer,
 * the variables here should all be configurable via environment variables.
-* Please add new variables here: apps/pwa/build/load-env.js
+* Please add new variables here: apps/pwa/build/environment-variables.js
 * */
 export const environmentsBase = {
   parse: {
