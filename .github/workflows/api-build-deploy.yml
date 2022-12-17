@@ -49,7 +49,7 @@ jobs:
           file: ./pwa.Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ secrets.DOCKER_USERNAME }}/mbat-pwa:${{ github.sha }}
+            ghcr.io/${{ secrets.DOCKER_USERNAME }}/mbat-api:${{ github.sha }}
 
       - name: Deploy
         uses: caprover/deploy-from-github@v1.1.2
