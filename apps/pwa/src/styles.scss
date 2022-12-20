@@ -36,9 +36,16 @@
 ion-button, ion-segment-button {
   text-transform: none;
 }
-
+// Custom Utility Classes
 .flexbox {
   display: flex;
 }
 
-
+// Angular CDK Styles
+.cdk-virtual-scrollable {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper {
+  max-width: 100vw !important;
+}

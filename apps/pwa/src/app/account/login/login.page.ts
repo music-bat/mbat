@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { environment } from "../../../environments/environment";
+import { environment } from '../../../environments/environment';
+import * as Parse from 'parse';
+import { AuthService } from '../auth.service';
+import { AccessTokenResponse } from "../types/AccessTokenResponse";
 
 @Component({
   selector: 'mbat-login',
@@ -16,9 +19,7 @@ import { environment } from "../../../environments/environment";
           <span>passende Musik</span>
           <span>für Euch</span>
         </div>
-        <ion-button (click)="authorize()" expand="block" color="success"
-          >Login mit Spotify
-        </ion-button>
+        <ion-button (click)="authorize()" expand="block" color="success">Login mit Spotify</ion-button>
       </div>
     </ion-content>
   `,
@@ -41,9 +42,7 @@ import { environment } from "../../../environments/environment";
       }
 
       .background {
-        background: var(--ion-background-color)
-          url('/assets/img/login-background.jpg') no-repeat center center /
-          cover;
+        background: var(--ion-background-color) url('/assets/img/login-background.jpg') no-repeat center center / cover;
 
         position: absolute;
         bottom: 0;
@@ -93,24 +92,27 @@ import { environment } from "../../../environments/environment";
 export class LoginPage {
   #spotifyUser: { id: string; display_name: string };
 
-  constructor(route: ActivatedRoute, private navCtl: NavController) {
+  constructor(route: ActivatedRoute, private navCtl: NavController, private authService: AuthService) {
     if (Parse.User.current()) {
       navCtl.navigateRoot('/');
-    } else {
-      route.fragment
-        .pipe(untilDestroyed(this))
-        .subscribe((fragment: string) =>
-          this.logIn(new URLSearchParams(fragment).get('access_token'))
-        );
+      return;
     }
+
+    route.queryParams.subscribe(async (params) => {
+      if (params.code) {
+        const response = await this.authService.requestAuthorizationToken(params.code);
+        return this.logIn(response);
+      }
+    });
+
   }
 
-  async logIn(token: string) {
-    if (!token) return;
+  async logIn(tokenResponse: AccessTokenResponse) {
+    if (!tokenResponse) return;
 
     if (!this.#spotifyUser) {
       const response = await fetch('https://api.spotify.com/v1/me', {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
       });
       this.#spotifyUser = await response.json();
     }
@@ -120,7 +122,7 @@ export class LoginPage {
       {
         authData: {
           id: this.#spotifyUser.id,
-          access_token: token,
+          ...tokenResponse
         },
       },
       {}
@@ -137,19 +139,6 @@ export class LoginPage {
   }
 
   authorize() {
-    const url: URL = new URL(
-      'authorize',
-      'https://accounts.spotify.com/authorize'
-    );
-    url.search = new URLSearchParams({
-      response_type: 'token',
-      client_id: environment.spotify.clientId,
-      scope: ['user-read-private'].join(' '),
-      redirect_uri: environment.spotify.redirectUri,
-      // TODO: generate and verify state
-      state: 'test',
-    }).toString();
-
-    window.location.replace(url.toString());
+    this.authService.requestAuthorizationCode();
   }
 }

@@ -17,7 +17,9 @@ async function bootstrap() {
   const api = new ParseServer(parseSeverConf);
   // Bind parse server to express.
   app.use(process.env.PARSE_MOUNT_PATH || '/', api);
+
   ParseServer.createLiveQueryServer(app.getHttpServer(), {
+    port: 1337,
     redisURL: process.env.REDIS_URL,
   });
 

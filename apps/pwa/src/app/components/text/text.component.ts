@@ -28,10 +28,69 @@ export class TextComponent extends IonText implements AfterContentInit {
   @HostBinding('style.font-size.px') fontSize = 18;
   @HostBinding('style.font-weight') fontWeight = 400;
 
-  @HostBinding('style.margin-top') @Input() mt = '0';
-  @HostBinding('style.margin-bottom') @Input() mb = '0';
-  @HostBinding('style.margin-left') @Input() ml = '0';
-  @HostBinding('style.margin-right') @Input() mr = '0';
+  @HostBinding('style.margin-top')
+  marginTop: string;
+
+  @HostBinding('style.margin-bottom')
+  marginBottom: string;
+
+  @HostBinding('style.margin-left')
+  marginLeft: string;
+
+  @HostBinding('style.margin-right')
+  marginRight: string;
+
+  @Input()
+  set mt(val: 's' | 'm' | 'l' | 'xl' | 'xxl' | undefined) {
+    switch (val) {
+      case 's':
+      case 'm':
+      case 'l':
+      case 'xl':
+      case 'xxl':
+        this.marginTop = `var(--margin-${val})`;
+        break;
+    }
+  }
+
+  @Input()
+  set mb(val: 's' | 'm' | 'l' | 'xl' | 'xxl') {
+    switch (val) {
+      case 's':
+      case 'm':
+      case 'l':
+      case 'xl':
+      case 'xxl':
+        this.marginBottom = `var(--margin-${val})`;
+        break;
+    }
+  }
+
+  @Input()
+  set ml(val: 's' | 'm' | 'l' | 'xl' | 'xxl') {
+    switch (val) {
+      case 's':
+      case 'm':
+      case 'l':
+      case 'xl':
+      case 'xxl':
+        this.marginLeft = `var(--margin-${val})`;
+        break;
+    }
+  }
+
+  @Input()
+  set mr(val: 's' | 'm' | 'l' | 'xl' | 'xxl') {
+    switch (val) {
+      case 's':
+      case 'm':
+      case 'l':
+      case 'xl':
+      case 'xxl':
+        this.marginRight = `var(--margin-${val})`;
+        break;
+    }
+  }
 
   @Input() set size(val: 's' | 'm' | 'l' | 'xl' | 'xxl') {
     switch (val) {
@@ -63,8 +122,8 @@ export class TextComponent extends IonText implements AfterContentInit {
       case 'l':
       case 'xl':
       case 'xxl':
-        this.ml = `var(--margin-${val})`;
-        this.mr = `var(--margin-${val})`;
+        this.marginLeft = `var(--margin-${val})`;
+        this.marginRight = `var(--margin-${val})`;
         break;
     }
   }
@@ -76,8 +135,8 @@ export class TextComponent extends IonText implements AfterContentInit {
       case 'l':
       case 'xl':
       case 'xxl':
-        this.mt = `var(--margin-${val})`;
-        this.mt = `var(--margin-${val})`;
+        this.marginTop = `var(--margin-${val})`;
+        this.marginBottom = `var(--margin-${val})`;
         break;
     }
   }

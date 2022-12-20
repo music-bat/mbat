@@ -10,6 +10,7 @@ docker-compose.yml
 
 # docker container data
 .neo4j/data
+.neo4j/plugins
 .neo4j/logs
 .mailserver/data
 .mailserver/state

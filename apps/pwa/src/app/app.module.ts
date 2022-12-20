@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { APP_BASE_HREF } from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +15,10 @@ import { AppComponent } from './app.component';
     IonicModule.forRoot({ mode: 'md', scrollAssist: false }),
     AppRoutingModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: APP_BASE_HREF, useValue: '/'},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

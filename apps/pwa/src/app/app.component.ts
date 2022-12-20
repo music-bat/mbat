@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import * as Parse from 'parse'
+import { NavController } from "@ionic/angular";
 
 @Component({
   selector: 'mbat-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private navCtrl: NavController) {}
+
+  async logOut(){
+    console.warn('logOut')
+    await Parse.User.logOut()
+    await this.navCtrl.navigateRoot('/account/login')
+  }
 }
