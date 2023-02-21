@@ -16,13 +16,12 @@ Parse.Cloud.define('processSyncJob', writeLibraryToDb);
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 Parse.Cloud.define('importPlaylist', async function (req) {
   let accessToken = req.params.accessToken;
-  let offset = 0;
-  let limit = 50;
+  const offset = 0;
+  const limit = 50;
   let stop = false;
-  let items = [];
+  const items = [];
   let lastUpdate = undefined;
-  let lastUpdateUser = req.user.get('lastLibraryImport');
-  console.log(lastUpdateUser);
+  const lastLibraryImport = req.user.get('lastLibraryImport');
   let url = `https://api.spotify.com/v1/me/tracks?offset=${offset}&limit=${limit}`;
 
   let retriesAfterTokenExpired = 0;
@@ -64,8 +63,7 @@ Parse.Cloud.define('importPlaylist', async function (req) {
     }
     if (data.items) {
       for (const item of data.items) {
-        if (new Date(item.added_at) /* 2022-11-03 */ < lastUpdateUser /* 2022-11-01 */) {
-          console.log(new Date(item.added_at).toISOString(), 'is samaller than stored', lastUpdateUser.toISOString());
+        if (new Date(item.added_at) < lastLibraryImport) {
           stop = true;
         } else {
           items.push(item);
