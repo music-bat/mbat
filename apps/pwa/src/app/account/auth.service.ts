@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AccessTokenResponse } from './types/AccessTokenResponse';
-
+import * as Parse from 'parse'
 @Injectable({
   providedIn: 'root',
 })
