@@ -20,9 +20,9 @@ export async function writeLibraryToDb(req: Parse.Cloud.AfterSaveRequest | Parse
   await job.fetchWithInclude('user', { useMasterKey: true });
   console.log('writeLibraryToDb - job', job.id);
 
-  const db = new Connection('bolt://localhost', {
-    username: '',
-    password: '',
+  const db = new Connection(process.env.NEO4J_URL || 'bolt://localhost', {
+    username: process.env.NEO4J_USERNAME || '',
+    password: process.env.NEO4J_PASSWORD || '',
   });
 
   const items = job.attributes.items;
