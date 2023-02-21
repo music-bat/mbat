@@ -6,7 +6,7 @@
 /out-tsc
 
 # docker-compose becase we generate this file cia tools/generators/docker-compose.ts
-docker-compose.yml
+docker-compose*.yml
 
 # docker container data
 .neo4j/data
@@ -52,3 +52,7 @@ Thumbs.db
 
 .env
 apps/pwa/src/environments/environment.dev.ts
+
+
+.lh 
+.history
