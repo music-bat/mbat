@@ -28,8 +28,9 @@ export async function writeLibraryToDb(req: Parse.Cloud.AfterSaveRequest | Parse
   const items = job.attributes.items;
   const user = job.get('user');
   const groups = await user.relation('groups').query().find({ useMasterKey: true });
-  for (const item of items) {
-    await addTrack(db, job.get('user'), item.track);
+  for (const [i, item] of items.entries()) {
+    const added = await addTrack(db, job.get('user'), item.track);
+    console.log(`${added ? '        imported' : 'skipped existing'} track ${i}/${items.length}`, item.track.name)
 
     for (const group of groups) {
       await likeTrackForGroup(db, group as Parse.Object<{ name: string }>, item.track.id, user.id);
@@ -45,12 +46,14 @@ export async function writeLibraryToDb(req: Parse.Cloud.AfterSaveRequest | Parse
 }
 
 async function addTrack(db: Connection, user: Parse.User, t: Track) {
+  const now = Date.now();
   const { id, uri, name, duration, popularity, previewURL, explicit } = t;
 
   const trackToSave: Pick<Track, 'id' | 'uri' | 'name' | 'duration' | 'popularity' | 'previewURL' | 'explicit'> & {
     image: string;
     artists: string;
     genres: string;
+    createdAt: number;
   } = {
     id,
     uri,
@@ -59,18 +62,23 @@ async function addTrack(db: Connection, user: Parse.User, t: Track) {
     popularity,
     previewURL: previewURL || '',
     explicit,
-    image: t.album.images[0].url,
+    image: t.album.images[0]?.url || '',
     artists: (t.artists || [])
       .map((a) => a.name)
       .filter(Boolean)
       .join(', '),
     genres: (t.album.genres || []).join(', '),
+    createdAt: Date.now()
   };
   const query = db
     .merge([node('user', 'User', { id: user.id, name: user.getUsername() })])
     .merge([node('track', 'Track', trackToSave)])
-    .merge([node('user'), relation('out', 'rel', 'LikesTrack', { likedByUserWithId: user.id }), node('track')]);
-  await query.run();
+    .merge([node('user'), relation('out', 'rel', 'LikesTrack', { likedByUserWithId: user.id }), node('track')])
+    .return('track');
+  const [{track}] = await query.run();
+
+  // return true if track has been added, false if the track has already been imported for this user
+  return track.properties.createdAt > now
 }
 
 async function likeTrackForGroup(db: Connection, group: Parse.Object<{ name: string }>, trackId: string, userId: string) {
