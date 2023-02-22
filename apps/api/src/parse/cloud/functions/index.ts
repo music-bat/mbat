@@ -8,7 +8,9 @@ import { deleteFile } from './delete-file';
 import { writeLibraryToDb } from '../afterSave/Neo4jSyncJob/write-library-to-db';
 import { requestToken } from './request-token';
 import { refreshToken } from './refresh-token';
+import { fetchGroupPlaylist } from './query-group-playlist';
 
+Parse.Cloud.define('fetchGroupPlaylist', fetchGroupPlaylist);
 Parse.Cloud.define('refreshToken', refreshToken);
 Parse.Cloud.define('requestToken', requestToken);
 Parse.Cloud.define('deleteFile', deleteFile);
@@ -76,7 +78,7 @@ Parse.Cloud.define('importPlaylist', async function (req) {
       const u = req.user;
       u.set('lastLibraryImport', new Date(lastUpdate));
       await u.save(undefined, { useMasterKey: true });
-      await writeFile('/user-library.json', JSON.stringify(items));
+      // await writeFile('/user-library.json', JSON.stringify(items));
 
       const Neo4jSyncJob = Parse.Object.extend('Neo4jSyncJob');
       const syncJob: Parse.Object = new Neo4jSyncJob();

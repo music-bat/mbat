@@ -1,15 +1,14 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import * as Parse from 'parse';
 import { DbService } from '../common/services/db.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import neo4j, { Driver, Session } from 'neo4j-driver';
 import { Track } from 'spotify-api.js';
 
 type MbatTrack = Pick<Track, 'id' | 'uri' | 'name' | 'duration' | 'popularity' | 'previewURL' | 'explicit'> & {
   image: string;
   artists: string;
   genres: string;
-} & { low: string; high: string };
+} & { likes: number };
 
 @UntilDestroy({
   arrayName: 'subcriptions',
@@ -20,16 +19,13 @@ type MbatTrack = Pick<Track, 'id' | 'uri' | 'name' | 'duration' | 'popularity' |
   styleUrls: ['tab1.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Tab1Page implements OnDestroy {
+export class Tab1Page {
   #accessToken: string;
   isImportRunning: boolean;
   loading: boolean;
   isLibraryImported = false;
 
   tracks: Array<MbatTrack> = [];
-
-  session: Session;
-  driver: Driver;
 
   get username(): string {
     return Parse.User.current().getUsername();
@@ -56,53 +52,17 @@ export class Tab1Page implements OnDestroy {
 
         const group = await user.relation('groups').query().first();
         if (!this.isImportRunning) {
-          this.startNeo4jSubscription(group.id);
+          Parse.Cloud.run('fetchGroupPlaylist' , { groupId: group.id }).then((response) => {
+            this.tracks = [...response.map(el => ({...el.track.properties, likes: el.likes}))]
+            this.cdr.markForCheck()
+            console.log(this.tracks)
+          });
+          
         }
-        // this.db.importQuery.subscribe().then((subscription) => {
-        //   console.log(this['subcriptions']);
-        //   this['subcriptions'].push(subscription);
-        //
-        //   subscription.on('delete', () => {
-        //     this.isImportRunning = false;
-        //     this.cdr.markForCheck();
-        //   });
-        // });
       })
       .catch(() => {
         this.loading = false;
         this.cdr.markForCheck();
-      });
-  }
-
-  startNeo4jSubscription(groupId) {
-    console.log('fetch tracks for groupId', groupId);
-    this.driver = neo4j.driver('neo4j://localhost', neo4j.auth.basic('', ''));
-    this.session = this.driver.session();
-    this.session
-      .run(
-        `
-MATCH (g:Group {id: '${groupId}'})-[:LikesTrack]-(t)
-RETURN COUNT(t) as c, t
-ORDER BY c DESC
-LIMIT 20
-      `,
-        {}
-      )
-      .subscribe({
-        onKeys: (keys) => {
-          console.log(keys);
-        },
-        onNext: (record) => {
-          this.tracks = [...this.tracks, { ...record.get('t').properties, ...record.get('c') }];
-          this.cdr.markForCheck();
-        },
-        onCompleted: () => {
-          console.log('completed', this.tracks);
-          this.session.close(); // returns a Promise
-        },
-        onError: (error) => {
-          console.log(error);
-        },
       });
   }
 
@@ -128,7 +88,4 @@ LIMIT 20
     return track.id;
   }
 
-  async ngOnDestroy() {
-    await this.driver.close();
-  }
 }
