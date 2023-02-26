@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { CompressService } from '../../compress.service';
+import { CompressService } from '../../common/services/compress.service';
 
 @UntilDestroy()
 @Component({

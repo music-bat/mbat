@@ -1,3 +1,50 @@
-<ion-content [fullscreen]="true">
-  <mbat-explore-container name="Hello {{username}}!"></mbat-explore-container>
+<ion-content [scrollY]="false" [scrollX]="false">
+  <div class="tab-content">
+    <div *ngIf="!isLibraryImported || isImportRunning || loading" class="no-import">
+      <mbat-text size="xl" mt="xl">Noch keine Tracks importiert!</mbat-text>
+      <mbat-text mv="l"
+        >Importiere jetzt deine Library, damit wir analysieren können welche Tracks du und die anderen Gruppenmitglieder mögen.
+      </mbat-text>
+
+      <ion-button (click)="startLibraryImport()" [disabled]="isImportRunning">
+        <ion-spinner [hidden]="!isImportRunning" slot="start"></ion-spinner>
+
+        <ng-container *ngIf="isImportRunning; then importRunning else noImportRunning"></ng-container>
+        <ng-template #importRunning>
+          <ion-label>Import Läuft</ion-label>
+        </ng-template>
+        <ng-template #noImportRunning>
+          <ion-label>Import Starten</ion-label>
+        </ng-template>
+      </ion-button>
+    </div>
+  </div>
+  <cdk-virtual-scroll-viewport
+    *ngIf="tracks"
+    itemSize="72"
+    minBufferPx="1200"
+    maxBufferPx="1350"
+    class="ion-content-scroll-host"
+    (scrolledIndexChange)="fetchNewPage($event)"
+  >
+    <
+    <ion-list>
+      <ion-item *cdkVirtualFor="let track of tracks; trackBy: trackById" color="transparent" lines="none">
+        <ion-thumbnail slot="start">
+          <img [src]="track.image" />
+        </ion-thumbnail>
+        <ion-label class="track-name">
+          {{track.name}}
+          <p>
+            <ion-text color="medium">{{track.artists}}</ion-text>
+          </p>
+        </ion-label>
+
+        <ion-note class="track-votes" slot="end">
+          <ion-icon name="heart" color="primary"></ion-icon>
+          <mbat-text size="s" class="track-votes--count">{{track.likes}}</mbat-text>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </cdk-virtual-scroll-viewport>
 </ion-content>

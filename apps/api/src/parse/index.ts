@@ -32,7 +32,7 @@ const env = {
 
 export const parseSeverConf = {
   databaseURI: env.databaseURI, // Connection string for your MongoDB database
-  cloud: process.env.CLOUD_CODE_PATH || './dist/apps/api/parse/cloud/index.js',
+  cloud: process.env.CLOUD_CODE_PATH || './dist/apps/cloud/index.js',
   appId: env.appId,
   masterKey: env.masterKey,
   fileKey: env.fileKey,
@@ -116,7 +116,7 @@ export const parseSeverConf = {
     resetTokenValidityDuration: 24 * 60 * 60, // expire after 2 hours
   },
   liveQuery: {
-    classNames: ['Group', 'GroupProfile', 'UserProfile'], // List of classes to support for query subscriptions
+    classNames: ['Group', 'GroupProfile', 'UserProfile', 'Neo4jSyncJob'], // List of classes to support for query subscriptions
     redisURL: process.env.REDIS_URL,
   },
 };
