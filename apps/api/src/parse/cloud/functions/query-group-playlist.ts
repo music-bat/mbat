@@ -1,5 +1,5 @@
 import { Connection, node, relation } from 'cypher-query-builder';
-console.debug('[Parse Cloud] Parse.Cloud.function/fetchGroupPlaylist mounted');
+console.debug('[Parse Cloud] Parse.Cloud function "fetchGroupPlaylist" mounted');
 
 export async function fetchGroupPlaylist(req: Parse.Cloud.FunctionRequest & { params: { groupId?: string } }) {
   const { groupId } = req.params;

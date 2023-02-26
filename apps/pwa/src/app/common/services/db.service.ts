@@ -12,10 +12,8 @@ export class DbService {
     return new Parse.Query('Neo4jSyncJob');
   }
 
-  importLib(accessToken): Promise<Track[]> {
-    if (accessToken) {
-      return Parse.Cloud.run('importPlaylist', { accessToken: accessToken });
-    }
+  importLib(): Promise<Track[]> {
+      return Parse.Cloud.run('importPlaylist');
   }
 
 }

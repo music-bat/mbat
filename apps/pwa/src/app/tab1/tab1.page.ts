@@ -20,7 +20,6 @@ type MbatTrack = Pick<Track, 'id' | 'uri' | 'name' | 'duration' | 'popularity' |
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Tab1Page {
-  #accessToken: string;
   isImportRunning: boolean;
   loading: boolean;
   isLibraryImported = false;
@@ -39,7 +38,6 @@ export class Tab1Page {
       .fetch()
       .then(async (user) => {
         this.loading = false;
-        this.#accessToken = user.get('spotifyToken');
         this.isLibraryImported = !!user.get('lastLibraryImport');
         console.log(user.get('lastLibraryImport'));
         this.cdr.markForCheck();
@@ -68,13 +66,8 @@ export class Tab1Page {
 
   async startLibraryImport() {
     this.isImportRunning = true;
-    const authData = Parse.User.current().get('authData');
-    const accessToken = authData.spotify.access_token;
-    if (!accessToken) {
-      return;
-    }
     try {
-      await this.db.importLib(accessToken);
+      await this.db.importLib();
     } catch (err) {
       await Parse.User.logOut();
     }

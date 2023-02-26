@@ -1,3 +1,5 @@
+console.debug('[Parse Cloud] Parse.Cloud function "refreshToken" mounted');
+
 export async function refreshToken(req: Parse.Cloud.FunctionRequest & { params: { user?: Parse.User; code: string; userId?: string } }) {
   const { user: requestUser, userId } = req.params;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
