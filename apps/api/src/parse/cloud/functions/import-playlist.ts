@@ -55,6 +55,7 @@ export async function importPlaylist(req: Parse.Cloud.FunctionRequest) {
     if (data.items) {
       for (const item of data.items) {
         if (new Date(item.added_at) < lastLibraryImport) {
+          // No new tracks have been added to the library since last import
           stop = true;
         } else {
           items.push(item);
