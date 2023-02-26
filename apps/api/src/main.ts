@@ -19,7 +19,7 @@ async function bootstrap() {
   app.use(process.env.PARSE_MOUNT_PATH || '/', api);
 
   ParseServer.createLiveQueryServer(app.getHttpServer(), {
-    port: 1337,
+    port: process.env.LIVE_QUERY_SERVER_PORT || 1337,
     redisURL: process.env.REDIS_URL,
   });
 
