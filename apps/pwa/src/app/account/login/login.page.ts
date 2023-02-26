@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { environment } from '../../../environments/environment';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import * as Parse from 'parse';
 import { AuthService } from '../auth.service';
 import { AccessTokenResponse } from "../types/AccessTokenResponse";
