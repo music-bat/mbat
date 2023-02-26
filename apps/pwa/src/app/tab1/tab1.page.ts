@@ -39,7 +39,6 @@ export class Tab1Page {
       .then(async (user) => {
         this.loading = false;
         this.isLibraryImported = !!user.get('lastLibraryImport');
-        console.log(user.get('lastLibraryImport'));
         this.cdr.markForCheck();
 
         const job = await this.db.importQuery.first();
@@ -53,7 +52,6 @@ export class Tab1Page {
           Parse.Cloud.run('fetchGroupPlaylist' , { groupId: group.id }).then((response) => {
             this.tracks = [...response.map(el => ({...el.track.properties, likes: el.likes}))]
             this.cdr.markForCheck()
-            console.log(this.tracks)
           });
           
         }
@@ -74,6 +72,7 @@ export class Tab1Page {
   }
 
   fetchNewPage(e) {
+    // TODO: implement pagination
     console.log('fetch new page', e);
   }
 

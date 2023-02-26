@@ -2,8 +2,8 @@
   <div class="tab-content">
     <div *ngIf="!isLibraryImported || isImportRunning || loading" class="no-import">
       <mbat-text size="xl" mt="xl">Noch keine Tracks importiert!</mbat-text>
-      <mbat-text mv="l">Importiere jetzt deine Library, damit wir analysieren können welche Tracks du und die anderen
-        Gruppenmitglieder mögen.
+      <mbat-text mv="l"
+        >Importiere jetzt deine Library, damit wir analysieren können welche Tracks du und die anderen Gruppenmitglieder mögen.
       </mbat-text>
 
       <ion-button (click)="startLibraryImport()" [disabled]="isImportRunning">
@@ -16,15 +16,22 @@
         <ng-template #noImportRunning>
           <ion-label>Import Starten</ion-label>
         </ng-template>
-
       </ion-button>
     </div>
   </div>
-  <cdk-virtual-scroll-viewport *ngIf="tracks" itemSize="72" minBufferPx="1200" maxBufferPx="1350" class="ion-content-scroll-host" (scrolledIndexChange)="fetchNewPage($event)">
-<!--    <ion-list>-->
+  <cdk-virtual-scroll-viewport
+    *ngIf="tracks"
+    itemSize="72"
+    minBufferPx="1200"
+    maxBufferPx="1350"
+    class="ion-content-scroll-host"
+    (scrolledIndexChange)="fetchNewPage($event)"
+  >
+    <
+    <ion-list>
       <ion-item *cdkVirtualFor="let track of tracks; trackBy: trackById" color="transparent" lines="none">
         <ion-thumbnail slot="start">
-          <img [src]="track.image">
+          <img [src]="track.image" />
         </ion-thumbnail>
         <ion-label class="track-name">
           {{track.name}}
@@ -38,6 +45,6 @@
           <mbat-text size="s" class="track-votes--count">{{track.low}}</mbat-text>
         </ion-note>
       </ion-item>
-<!--    </ion-list>-->
+    </ion-list>
   </cdk-virtual-scroll-viewport>
 </ion-content>

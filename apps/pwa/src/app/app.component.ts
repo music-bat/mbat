@@ -11,7 +11,6 @@ export class AppComponent {
   constructor(private navCtrl: NavController) {}
 
   async logOut(){
-    console.warn('logOut')
     await Parse.User.logOut()
     await this.navCtrl.navigateRoot('/account/login')
   }
