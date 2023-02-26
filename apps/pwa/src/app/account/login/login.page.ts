@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import * as Parse from 'parse';
 import { AuthService } from '../auth.service';
 import { AccessTokenResponse } from "../types/AccessTokenResponse";
 
+@UntilDestroy()
 @Component({
   selector: 'mbat-login',
   template: `
@@ -97,7 +98,7 @@ export class LoginPage {
       return;
     }
 
-    route.queryParams.subscribe(async (params) => {
+    route.queryParams.pipe(untilDestroyed(this)).subscribe(async (params) => {
       if (params.code) {
         const response = await this.authService.requestAuthorizationToken(params.code);
         return this.logIn(response);
