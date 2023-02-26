@@ -12,7 +12,7 @@ export async function fetchGroupPlaylist(req: Parse.Cloud.FunctionRequest & { pa
     .merge([node('track', 'Track')])
     .merge([node('group'), relation('out', 'rel', 'LikesTrack', { id: groupId }), node('track')])
     .return('COUNT(track) as likes, track')
-    .orderBy('likes', 'asc')
+    .orderBy('likes', 'desc')
     .limit(200);
   return await query.run();
 }
