@@ -11,3 +11,12 @@ Parse.Cloud.define('requestToken', requestToken);
 Parse.Cloud.define('deleteFile', deleteFile);
 Parse.Cloud.define('processSyncJob', writeLibraryToDb);
 Parse.Cloud.define('importPlaylist', importPlaylist);
+
+// Define Parse Cloud functions for group invite codes
+import { createGroupInvite } from './group-invite-code/create-invite-code';
+import { deleteGroupInvite } from './group-invite-code/delete-invite-code';
+import { joinGroupByInviteCode } from './group-invite-code/join-group-by-invite-code';
+
+Parse.Cloud.define('createGroupInvite', createGroupInvite);
+Parse.Cloud.define('deleteGroupInvite', deleteGroupInvite);
+Parse.Cloud.define('joinGroupByInviteCode', joinGroupByInviteCode);
