@@ -33,8 +33,9 @@ export async function createGroupInvite(request: Parse.Cloud.FunctionRequest<{ g
   }
 
   const newInviteCode = new Parse.Object('GroupInviteCode');
-  newInviteCode.set('group', groupObject);
+  newInviteCode.set('group', groupObject.toPointer());
   newInviteCode.set('code', groupId);
+  newInviteCode.set('createdBy', request.user.toPointer());
 
   const expiresAt = new Date();
   expiresAt.setMonth(expiresAt.getMonth() + 3);
