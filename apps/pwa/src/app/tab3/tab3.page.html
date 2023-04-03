@@ -5,5 +5,47 @@
     </ion-toolbar>
   </ion-header>
 
-  <mbat-explore-container name="Tab 3 page"></mbat-explore-container>
+  <ion-card>
+    <ion-card-content> </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-list-header>Group Settings</ion-list-header>
+    <form *ngIf="group">
+      <ion-item>
+        <ion-label position="floating">Group Name</ion-label>
+        <ion-input [(ngModel)]="group.name" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Group Description</ion-label>
+        <ion-textarea [(ngModel)]="group.description" name="description"></ion-textarea>
+      </ion-item>
+    </form>
+    <ion-list-header>Group Members</ion-list-header>
+
+    <ng-container *ngIf="isModerator">
+
+      <ion-item>
+        <ion-label>Invite Code</ion-label>
+        <ion-input *ngIf="groupInviteCode; else createInviteCode" [(ngModel)]="groupInviteCode" name="inviteCode" readonly></ion-input>
+        <ion-button *ngIf="groupInviteCode" (click)="copyToClipboard(groupInviteCode)" color="primary">
+          <ion-icon name="copy"></ion-icon>
+        </ion-button>
+       <ion-button *ngIf="groupInviteCode" (click)="deleteGroupInviteCode()" color="danger">
+         <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      
+      </ion-item>
+  
+      <ng-template #createInviteCode>
+        <ion-button (click)="createGroupInviteCode()">Create</ion-button>
+      </ng-template>
+    </ng-container>
+
+    <ion-item *ngIf="group?.members">
+      <ion-label>Edit Group Member</ion-label>
+      <ion-select [(ngModel)]="group.members" multiple="true" name="members" interface="popover">
+        <ion-select-option *ngFor="let member of group.members" [value]="member">{{member.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>

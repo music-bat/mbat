@@ -3,15 +3,14 @@ cdk-virtual-scroll-viewport {
   width: 100%;
 }
 
-
 .tab-content {
   padding: 36px 24px;
 }
-ion-button ion-spinner{
+ion-button ion-spinner {
   margin-right: 12px;
 }
 
-.no-import{
+.no-import {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +22,7 @@ ion-button ion-spinner{
 ion-list {
   background: transparent;
 }
-.track-name{
+.track-name {
   margin: 12px;
 }
 
@@ -37,9 +36,8 @@ ion-list {
   ion-icon {
     font-size: 20px;
   }
-  &--count{
-    margin-top:2px;
+  &--count {
+    margin-top: 2px;
     font-weight: 100;
   }
-
 }

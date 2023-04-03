@@ -28,6 +28,8 @@ export class AddGroupPage {
     group.set('image', ev.image);
     group.set('name', ev.name);
     group.set('description', ev.description);
+    group.relation('moderators').add(Parse.User.current());
+
 
     await group.save();
     await group.pin();
@@ -35,6 +37,12 @@ export class AddGroupPage {
     const groupRelation: Parse.Relation = await Parse.User.current().relation('groups');
     groupRelation.add(group);
     await Parse.User.current().save();
+
+    return this.navCtrl.navigateRoot(['/']);
+  }
+
+  async joinGroup(ev) {
+    await Parse.Cloud.run('joinGroupByInviteCode', { inviteCode: ev.inviteCode });
 
     return this.navCtrl.navigateRoot(['/']);
   }

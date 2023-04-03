@@ -17,67 +17,97 @@ import { CompressService } from '../../common/services/compress.service';
 @Component({
   selector: 'mbat-add-group-page-03',
   template: `
-    <div class="content-head">
-      <mbat-text size="l" mv="m">Erstelle deine Gruppe</mbat-text>
-    </div>
-    <div class="content-body">
-      <ion-item color="transparent" lines="none">
-        <ion-label position="stacked"
-          >Gruppenbild
-          <ion-text color="danger">*</ion-text>
-        </ion-label>
-      </ion-item>
+    <ng-container *ngIf="mode === 'join'; else createGroupTemplate">
+      <div class="content-head">
+        <img src="assets/img/join-group.svg" />
+        <mbat-text size="l">Gruppe beitreten</mbat-text>
+      </div>
+      <div class="content-body">
+        <form [formGroup]="joinGroupForm">
+          <ion-item color="transparent">
+            <ion-label position="stacked"
+              >Einladungscode
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input formControlName="inviteCode" [clearInput]="true" [debounce]="0"></ion-input>
+          </ion-item>
 
-      <div class="group-image-container">
-        <div class="group-image" [style.background-image]="imagePreview" (click)="promptImage()">
-          <ion-icon
-            *ngIf="createGroupForm.controls.image.value"
-            color="danger"
-            name="close-circle"
-            (click)="destroyImage($event)"
-          ></ion-icon>
-          <ion-icon
-            *ngIf="!createGroupForm.controls.image.value"
-            color="primary"
-            name="add-circle"
-            (click)="promptImage($event)"
-          ></ion-icon>
-        </div>
-        <input [(ngModel)]="fileInputValue" #imageInput [hidden]="true" type="file" accept="image/*" (change)="loadImage($event)" />
+          <ion-item color="transparent" lines="none">
+            <ion-text> Ein Freund hat dich in seine Gruppe eingeladen? Gibt hier den Einladungscode ein, um der Gruppe beitreten </ion-text>
+          </ion-item>
+        </form>
       </div>
 
-      <form [formGroup]="createGroupForm">
-        <ion-item color="transparent">
+      <div class="content-footer buttons flexbox ion-justify-content-end">
+        <ion-button (click)="handleGroupJoin()" [disabled]="joinGroupForm.invalid" [color]="joinGroupForm.valid ? 'primary' : 'light'">
+          <ion-label>Gruppe beitreten</ion-label>
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </ng-container>
+    <ng-template #createGroupTemplate>
+      <div class="content-head">
+        <mbat-text size="l" mv="m">Erstelle deine Gruppe</mbat-text>
+      </div>
+      <div class="content-body">
+        <ion-item color="transparent" lines="none">
           <ion-label position="stacked"
-            >Gruppenname
+            >Gruppenbild
             <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input formControlName="name" [clearInput]="true" [debounce]="0"></ion-input>
         </ion-item>
-        <ion-item color="transparent">
-          <ion-label position="stacked">Beschreibungstext</ion-label>
-          <ion-textarea formControlName="description" rows="3">
-            <ion-text class="max-length-hint">
-              <ion-text [color]="createGroupForm.controls.description.valid ? 'success' : 'danger'">{{
-                createGroupForm.controls.description.value?.length || 0
-              }}</ion-text>
-              /100
-            </ion-text>
-          </ion-textarea>
-        </ion-item>
-      </form>
 
-      <mbat-text size="s">
-        <mbat-text color="danger">*</mbat-text>
-        = Pflichtfeld
-      </mbat-text>
-    </div>
-    <div class="content-footer buttons flexbox ion-justify-content-end">
-      <ion-button (click)="handleFormSubmit()" [disabled]="createGroupForm.invalid" [color]="createGroupForm.valid ? 'primary' : 'light'">
-        <ion-label>Gruppe erstellen</ion-label>
-        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
-      </ion-button>
-    </div>
+        <div class="group-image-container">
+          <div class="group-image" [style.background-image]="imagePreview" (click)="promptImage()">
+            <ion-icon
+              *ngIf="createGroupForm.controls.image.value"
+              color="danger"
+              name="close-circle"
+              (click)="destroyImage($event)"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="!createGroupForm.controls.image.value"
+              color="primary"
+              name="add-circle"
+              (click)="promptImage($event)"
+            ></ion-icon>
+          </div>
+          <input [(ngModel)]="fileInputValue" #imageInput [hidden]="true" type="file" accept="image/*" (change)="loadImage($event)" />
+        </div>
+
+        <form [formGroup]="createGroupForm">
+          <ion-item color="transparent">
+            <ion-label position="stacked"
+              >Gruppenname
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input formControlName="name" [clearInput]="true" [debounce]="0"></ion-input>
+          </ion-item>
+          <ion-item color="transparent">
+            <ion-label position="stacked">Beschreibungstext</ion-label>
+            <ion-textarea formControlName="description" rows="3">
+              <ion-text class="max-length-hint">
+                <ion-text [color]="createGroupForm.controls.description.valid ? 'success' : 'danger'">{{
+                  createGroupForm.controls.description.value?.length || 0
+                }}</ion-text>
+                /100
+              </ion-text>
+            </ion-textarea>
+          </ion-item>
+        </form>
+
+        <mbat-text size="s">
+          <mbat-text color="danger">*</mbat-text>
+          = Pflichtfeld
+        </mbat-text>
+      </div>
+      <div class="content-footer buttons flexbox ion-justify-content-end">
+        <ion-button (click)="handleFormSubmit()" [disabled]="createGroupForm.invalid" [color]="createGroupForm.valid ? 'primary' : 'light'">
+          <ion-label>Gruppe erstellen</ion-label>
+          <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </ng-template>
   `,
   styleUrls: ['add-group.page.scss'],
   styles: [
@@ -122,12 +152,21 @@ export class AddGroupPage03Component {
     name: string;
     description: string;
   }>();
+
+  @Output() joinGroup = new EventEmitter<{
+    inviteCode: string;
+  }>();
+
   @Input() mode: 'create' | 'join';
 
   createGroupForm = new UntypedFormGroup({
     image: new UntypedFormControl(undefined, [Validators.required]),
-    name: new UntypedFormControl(undefined, [Validators.required, Validators.min(3), Validators.maxLength(30)]),
+    name: new UntypedFormControl(undefined, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     description: new UntypedFormControl(undefined, [Validators.maxLength(100)]),
+  });
+
+  joinGroupForm = new UntypedFormGroup({
+    inviteCode: new UntypedFormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
   });
 
   get imagePreview() {
@@ -195,6 +234,10 @@ export class AddGroupPage03Component {
 
   handleFormSubmit() {
     this.createGroup.next(this.createGroupForm.value);
+  }
+
+  handleGroupJoin() {
+    this.joinGroup.next(this.joinGroupForm.value);
   }
 
   /*

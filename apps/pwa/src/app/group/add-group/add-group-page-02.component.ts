@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
         <ion-segment-button value="create" (click)="mode = 'create'">
           <ion-label>Gruppe erstellen</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="join" (click)="mode = 'join'" [disabled]="true">
+        <ion-segment-button value="join" (click)="mode = 'join'">
           <ion-label>Gruppe Beitreten</ion-label>
         </ion-segment-button>
       </ion-segment>
@@ -30,7 +30,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
     </div>
 
     <div class="content-footer buttons flexbox ion-justify-content-end">
-      <ion-button (click)="next()" [disabled]="mode === 'join'">
+      <ion-button (click)="next()">
         <ion-label>Los geht's</ion-label>
         <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
       </ion-button>
