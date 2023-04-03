@@ -12,6 +12,10 @@ export async function refreshToken(req: Parse.Cloud.FunctionRequest & { params: 
     user = await new Parse.Query('_User').get(userId, { useMasterKey: true }) as Parse.User;
   }
 
+  if(!user){
+    throw 'User not found.';
+  }
+
   const authData = user.get('authData');
 
   const response = await Parse.Cloud.httpRequest({
@@ -19,7 +23,7 @@ export async function refreshToken(req: Parse.Cloud.FunctionRequest & { params: 
     method: 'POST',
     body: {
       grant_type: 'refresh_token',
-      refresh_token: authData.refresh_token,
+      refresh_token: authData.spotify.refresh_token,
     },
     headers: {
       Authorization: 'Basic ' + new Buffer(clientId + ':' + clientSecret).toString('base64'),
