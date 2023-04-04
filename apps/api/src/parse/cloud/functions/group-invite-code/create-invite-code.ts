@@ -34,7 +34,6 @@ export async function createGroupInvite(request: Parse.Cloud.FunctionRequest<{ g
 
   const newInviteCode = new Parse.Object('GroupInviteCode');
   newInviteCode.set('group', groupObject.toPointer());
-  newInviteCode.set('code', groupId);
   newInviteCode.set('createdBy', request.user.toPointer());
 
   const expiresAt = new Date();
@@ -42,7 +41,7 @@ export async function createGroupInvite(request: Parse.Cloud.FunctionRequest<{ g
   newInviteCode.set('expiresAt', expiresAt);
 
   await newInviteCode.save(null, { useMasterKey: true });
+  await newInviteCode.save({code: newInviteCode.id}, { useMasterKey: true });
 
   return newInviteCode;
 }
-
