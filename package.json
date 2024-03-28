@@ -52,7 +52,7 @@
     "@ionic/angular-server": "^6.4.0",
     "@nestjs/common": "9.0.0",
     "@nestjs/core": "9.0.0",
-    "@nestjs/platform-express": "9.0.0",
+    "@nestjs/platform-express": "10.3.6",
     "@ngneat/until-destroy": "^9.2.2",
     "@nguniversal/express-engine": "15.0.0",
     "@nrwl/angular": "15.3.3",
