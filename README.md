@@ -1,25 +1,7 @@
+# Project has been archived
+This project has been archived and is no longer maintained. The development has stopped and the project is not in use anymore. If you want to continue the development, feel free to fork the project and continue the development on your own.
+
 <br/>
-<p align="center">
-  <a href="https://github.com/music-bat/mbat">
-    <img src="images/logo-small.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">mBat - Music for you and your Friends</h3>
-
-  <p align="center">
-    An app for creating playlists including songs you and your friends like!
-    <br/>
-    <br/>
-    <a href="https://music-bat.com"><strong>Visit the Website »</strong></a>
-    <br/>
-    <br/>
-    <a href="https://dev.music-bat.com">View Development App</a>
-    .
-    <a href="https://github.com/music-bat/mbat/issues">Report Bug</a>
-    .
-    <a href="https://github.com/music-bat/mbat/issues">Request Feature</a>
-  </p>
-</p>
 
  [![Build and Deploy API](https://github.com/music-bat/mbat/actions/workflows/api-build-deploy.yml/badge.svg)](https://github.com/music-bat/mbat/actions/workflows/api-build-deploy.yml) 
  [![Build and Deploy PWA](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml/badge.svg)](https://github.com/music-bat/mbat/actions/workflows/pwa-build-deploy.yml) 
@@ -30,10 +12,6 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-<a href="https://www.patreon.com/perzeuss" title="Become a patreon"> 
-  <img alt="Become a patreon" src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="200">
-</a>
 
 ## Table Of Contents
 * [Roadmap](#roadmap)
