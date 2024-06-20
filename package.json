@@ -61,7 +61,7 @@
     "handlebars": "^4.7.7",
     "neo4j-driver": "^4.3.3",
     "parse": "^3.5.1",
-    "parse-server": "^5.4.0",
+    "parse-server": "^5.5.6",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.0",
     "simple-parse-smtp-adapter": "github:music-bat/simple-parse-smtp-adapter",
