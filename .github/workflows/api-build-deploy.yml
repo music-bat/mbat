@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v3.2.0
         with:
           context: .
-          file: ./pwa.Dockerfile
+          file: ./api.Dockerfile
           push: true
           tags: |
             ghcr.io/${{ secrets.DOCKER_USERNAME }}/mbat-api:${{ github.sha }}

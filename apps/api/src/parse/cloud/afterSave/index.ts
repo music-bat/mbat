@@ -3,7 +3,8 @@ import './File/index';
 import { ClassList, customParseClasses } from '../class-list';
 import { setupGroupPermissions } from './Group/setup-group-permissions';
 import { assignEveryoneRole } from './User/assign-everyone-role';
-
+import { writeLibraryToDb } from "./Neo4jSyncJob/write-library-to-db";
+Parse.Cloud.afterSave('Neo4jSyncJob', writeLibraryToDb)
 customParseClasses.forEach((className) => {
   Parse.Cloud.afterSave(className, (request: AfterSaveRequest) => {
     switch (className) {

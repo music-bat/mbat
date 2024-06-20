@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginPage } from './login/login.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { RouterModule } from "@angular/router";
+import { AuthService } from "./auth.service";
 
 @NgModule({
   imports: [
@@ -26,5 +27,8 @@ import { RouterModule } from "@angular/router";
     ])
   ],
   declarations: [LoginPage],
+  providers: [
+    AuthService
+  ]
 })
 export class AccountModule {}
